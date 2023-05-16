@@ -54,7 +54,7 @@ public class SortProductView {
     private static void showSortByQuantity() {
         List<Product> productList = productService.findAll();
         System.out.println("Sắp xếp tăng dần");
-        SortByQuantityAsc sortByQuantityAsc = new SortByQuantityAsc();
+        SortByQuantity sortByQuantityAsc = new SortByQuantity();
         productList.sort(sortByQuantityAsc);
         productView.show(productList);
         choice();
@@ -63,7 +63,7 @@ public class SortProductView {
     private static void showSortByPrice() {
         List<Product> productList = productService.findAll();
         System.out.println("Sắp xếp tăng dần");
-        SortByPriceAsc sortByPriceAsc = new SortByPriceAsc();
+        SortByPrice sortByPriceAsc = new SortByPrice();
         productList.sort(sortByPriceAsc);
         productView.show(productList);
         choice();
@@ -72,7 +72,7 @@ public class SortProductView {
     private static void showSortByName() {
         List<Product> productList = productService.findAll();
         System.out.println("Sắp xếp tăng dần ");
-        SortByNameAsc sortByNameAsc = new SortByNameAsc();
+        SortByName sortByNameAsc = new SortByName();
         productList.sort(sortByNameAsc);
         productView.show(productList);
         choice();
