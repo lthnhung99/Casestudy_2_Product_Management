@@ -19,7 +19,6 @@ public class MenuProductView {
         System.out.println("1. Cập nhật tên");
         System.out.println("2. Cập nhật giá");
         System.out.println("3. Cập nhật số lượng");
-        System.out.println("4. Cập nhật tên thương hiệu");
         System.out.println("0. Quay lại");
 
         System.out.println("Chọn chức năng");

@@ -142,7 +142,6 @@ public class ProductView {
     private void inputQuantity (int id){
         Product product = productService.findById(id);
         System.out.println("Nhập số lượng:");
-        System.out.println("➠");
         int quantity = Integer.parseInt(sc.nextLine());
         product.setQuantity(quantity);
         productService.update(product);
@@ -152,7 +151,6 @@ public class ProductView {
     private void inputName (int id){
         Product product = productService.findById(id);
         System.out.println("Nhập tên:");
-        System.out.println("➠");
         String nameProduct = sc.nextLine();
         product.setNameProduct(nameProduct);
         productService.update(product);

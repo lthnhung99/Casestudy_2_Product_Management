@@ -39,7 +39,7 @@ public class OrderView {
         try {
             idUser = AdminView.idOnlineUser;
             Order order = new Order();
-            long orderId = System.currentTimeMillis() %10000;
+            long orderId = System.currentTimeMillis() %100000;
             Instant creatAt = Instant.now();
             ProductView productView = new ProductView();
             productView.showProduct(SelectFunction.ADD);
@@ -94,12 +94,11 @@ public class OrderView {
                         isTrue = false;
                         break;
                     case 0:
-                        System.out.println("Exit the program...");
+                        System.out.println("Thoát khỏi chương trình");
                         System.exit(0);
                         break;
                     default:
                         System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
-                        System.out.print(" => ");
                         break;
                 }
                 // isTrue = case4:
@@ -142,7 +141,7 @@ public class OrderView {
                     }
                 } else {
                     System.out.println("Giỏ hàng rỗng!");
-                    System.out.println("===> Chọn 'y' để thêm sản phẩm \t|\t 'q' để quay lại");
+                    System.out.println("Chọn 'y' để thêm sản phẩm \t|\t 'q' để quay lại");
                     choose = scanner.nextLine();
                     switch (choose) {
                         case "y" :
@@ -215,13 +214,12 @@ public class OrderView {
     private String inputAddress(SelectFunction choose) {
         String address;
         do {
-            System.out.println("Nhập địa chỉ:(vd: 27/23/131 Nguyễn Huệ / tp.Huế )");
+            System.out.println("Nhập địa chỉ (Huế )");
             System.out.print("➤ ");
             address = scanner.nextLine();
             if (address.trim().isEmpty()) {
                 System.out.println("Địa chỉ không được để trống!!");
-                System.out.println("Nhập lại địa chỉ:(vd: 27/23/131 Nguyễn Huệ / tp.Huế )");
-                System.out.print("➤ ");
+                System.out.println("Nhập lại địa chỉ:(vd:Huế )");
             }
         } while (address.trim().isEmpty());
         return address;
@@ -229,11 +227,11 @@ public class OrderView {
     }
 
     private String inputPhone(SelectFunction choose) {
-        System.out.println("Nhập số điện thoại (vd:0987654321)");
+        System.out.println("Nhập số điện thoại(Gồm 10 số, bắt đầu là số 0)");
         System.out.print("➤ ");
         String phone = scanner.nextLine();
         while (!ValidateUtils.isPhoneValid(phone)) {
-            System.out.println("Số điện thoại: (vd:0987654321) gồm 10 số ,số đầu là 0 và số thứ 2 là những số 3/5/7/9");
+            System.out.println("Số điện thoại(Gồm 10 số, bắt đầu là số 0)");
             phone = scanner.nextLine();
         }
         return phone;
@@ -241,12 +239,12 @@ public class OrderView {
 
     private String inputName(SelectFunction choose) {
         System.out.println("Nhập chức năng:");
-        System.out.println("Nhập họ và tên: (vd: Nguyễn Văn A) " + "Tên phải viết hoa chữ cái đầu)");
+        System.out.println("Nhập họ và tên(Tên phải viết hoa chữ cái đầu)");
 
         String name = scanner.nextLine();
         while (!ValidateUtils.isFullNameValid(name)) {
             System.out.println("Tên " + name + " không hợp lệ!" + "Vui lòng nhập lại" + "Tên phải viết hoa chữ cái đầu, có dấu");
-            System.out.println("Nhập tên: (vd: Nguyễn Văn A)");
+            System.out.println("Nhập tên(Tên phải viết hoa chữ cái đầu");
 
             name = scanner.nextLine();
         }
@@ -320,7 +318,6 @@ public class OrderView {
         boolean flag = true;
         do {
             System.out.println(" Chọn 't' để thêm sản phẩm \t|\t 'q' để quay lại.");
-            System.out.print(" => ");
             String option = scanner.nextLine();
             switch (option) {
                 case "t":
@@ -330,7 +327,6 @@ public class OrderView {
                     break;
                 default:
                     System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
-                    System.out.print(" => ");
                     flag = true;
             }
         } while (flag);

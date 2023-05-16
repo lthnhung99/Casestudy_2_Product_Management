@@ -62,16 +62,15 @@ public class OrderItemView {
                 setGrandTotal(orderId);
                 orderItemService.update(orderItems);
             }else {
-                OrderItem orderItem = new OrderItem(System.currentTimeMillis() % 1000, idPro, product.getNameProduct(), product.getPrice(), quantity, quantity * product.getPrice(), orderId);
+                OrderItem orderItem = new OrderItem(System.currentTimeMillis() % 100000, idPro, product.getNameProduct(), product.getPrice(), quantity, quantity * product.getPrice(), orderId);
                 ////(long orderId, String name, String phone, String address, Instant creatAt)
                 orderItemService.add(orderItem);
             }
             System.out.println("Đã thêm sản phẩm vào đơn hàng.");
-            System.out.println("----------------------------------------------------------------------------------------------------------------");
+
             boolean checkContinue = false;
             do {
                 System.out.println("Bạn có muốn đặt thêm sản phẩm?");
-                System.out.println("----------------------------------------------------------------------------------------------------------------");
                 System.out.println("Chọn 'Y' để thêm sản phẩm || 'N' để ngừng thêm sản phẩm");
                 System.out.print("Nhập chức năng: ");
                 String choices = scanner.nextLine();
@@ -154,7 +153,7 @@ public class OrderItemView {
                         isTrue = false;
                         break;
                     case 0 :
-                        System.out.println("Exit the program...");
+                        System.out.println("Thoát khỏi chương trình");
                         System.exit(0);
                     default :
                         System.out.println("Lựa chọn sai, vui lòng nhập lại!");
@@ -179,7 +178,6 @@ public class OrderItemView {
                 List<OrderItem> orderItems = new ArrayList<>();
                 orderItems.add(orderItem);
                 orderItemService.update(orderItem);
-//                showOrderItem2(orderItems);
                 flag = false;
             } catch (Exception e) {
                 System.out.println("Sai cú pháp. Vui lòng nhập lại!");
@@ -356,7 +354,6 @@ public class OrderItemView {
                     break;
                 default:
                     System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
-                    System.out.print(" => ");
             }
         } while (flag);
     }
@@ -381,7 +378,7 @@ public class OrderItemView {
                     for (OrderItem orderItem : orderItems) {
                         setProductQuantity(orderItem.getProductId(), orderItem.getQuantity());
                     }
-                    System.out.println("Exit the program...");
+                    System.out.println("Thoát khỏi chương trình");
                     System.exit(0);
                     break;
                 default:
@@ -395,7 +392,7 @@ public class OrderItemView {
         do {
             System.out.println("Bạn có muốn in đơn hàng?");
             System.out.println("Chọn 'i' để in \t || chọn 'q' để quay lại");
-            System.out.print(">Nhập chức năng: ");
+            System.out.print("Nhập chức năng: ");
             String choices = scanner.nextLine();
             switch (choices){
                 case "i":
@@ -471,8 +468,8 @@ public class OrderItemView {
         System.out.println("HÓA ĐƠN THANH TOÁN");
         System.out.println("│                                                                                                 │");
         System.out.printf("│   Người mua: %-25s  ĐƠN THANH TOÁN           Thời gian: %16s    │\n", order.getName(), InstantUtils.instantToString(order.getCreatAt()));
-        System.out.printf("│   Số điện thoại: %-30s                         (MISS. MIÊU)            │\n", order.getPhone());
-        System.out.printf("│   Địa chỉ: %-30s                             Liên Hệ: 0938479238       │\n", order.getAddress());
+        System.out.printf("│   Số điện thoại: %-30s                                     │\n", order.getPhone());
+        System.out.printf("│   Địa chỉ: %-30s                                    │\n", order.getAddress());
 
         System.out.printf("│ %-2s%-5s | %-11s%-19s | %-7s%-11s | %-1s%-9s | %-2s%-16s │\n",
                 "", "STT",

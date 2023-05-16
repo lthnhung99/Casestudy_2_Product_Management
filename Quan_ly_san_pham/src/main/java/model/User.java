@@ -42,23 +42,7 @@ public class User {
         this.role = role;
     }
 
-    public static User parseUser(String raw){
-        User user = new User();
-        String[] fields = raw.split(",");
-        user.idUser = Long.parseLong(fields[0]);
-        user.userName = fields[1];
-        user.passWord = fields[2];
-        user.fullName = fields[3];
-        user.mobile = fields[4];
-        user.email = fields[5];
-        user.address = fields[6];
-        user.role = Role.parseRole(fields[7]);
-        user.createAt = Instant.parse(fields[8]);
-        String temp = fields[9];
-        if(temp != null && !temp.equals("null"))
-            user.updateAt = Instant.parse(temp);
-        return user;
-    }
+
 
     public long getIdUser() {
         return idUser;
@@ -143,5 +127,23 @@ public class User {
     @Override
     public String toString() {
         return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,", idUser, userName, passWord, fullName, mobile, email, address, role, createAt, updateAt);
+    }
+
+    public static User parseUser(String raw){
+        User user = new User();
+        String[] item = raw.split(",");
+        user.idUser = Long.parseLong(item[0]);
+        user.userName = item[1];
+        user.passWord = item[2];
+        user.fullName = item[3];
+        user.mobile = item[4];
+        user.email = item[5];
+        user.address = item[6];
+        user.role = Role.parseRole(item[7]);
+        user.createAt = Instant.parse(item[8]);
+        String temp = item[9];
+        if(temp != null && !temp.equals("null"))
+            user.updateAt = Instant.parse(temp);
+        return user;
     }
 }

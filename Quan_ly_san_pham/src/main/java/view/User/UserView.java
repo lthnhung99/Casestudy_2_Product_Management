@@ -25,7 +25,7 @@ public class UserView {
     public void addUser(){
         do {
             try {
-                long idUser = System.currentTimeMillis()/1000;
+                long idUser = System.currentTimeMillis()%100000;
                 String username = inputUserName();
                 String password = inputPassword();
                 String fullName = inputFullName(SelectFunction.ADD);
@@ -95,7 +95,6 @@ public class UserView {
     }
 
     public void removeUser() {
-//        List<User> users = userService.findAll();
         showUsers(SelectFunction.REMOVE);
         int id;
         while (!userService.existsById(id = inputId(SelectFunction.REMOVE))) {
@@ -169,25 +168,23 @@ public class UserView {
     public String inputEmail(SelectFunction choose) {
         switch (choose) {
             case ADD:
-                System.out.println("Nhập email (vd: Thanhnhan123@gmail.com)");
+                System.out.println("Nhập email");
                 break;
             case UPDATE:
                 System.out.println("Nhập email mà bạn muốn đổi: ");
                 break;
         }
-        System.out.print("➠");
         String email;
         do {
             if (!ValidateUtils.isEmailValid(email = sc.nextLine())) {
                 System.out.println("Email " + email + " không đúng định dạng Vui lòng nhập lại !" + "");
-                System.out.println("Nhập email (vd: Thanhnhan123@gmail.com)");
+                System.out.println("Nhập email");
                 System.out.print("➠");
                 continue;
             }
             if (userService.existByEmail(email)) {
                 System.out.println("Email " + email + " của bạn đẫ tồn tại! Vui lòng nhập lại!");
-                System.out.println("Nhập email (vd: Thanhnhan123@gmail.com");
-                System.out.print("➠");
+                System.out.println("Nhập email (vd: Hongnhung123@gmail.com");
                 continue;
             }
             break;
@@ -205,7 +202,6 @@ public class UserView {
                     if (address.trim().isEmpty()) {
                         System.out.println("Địa chỉ không được để trống!");
                         System.out.println("Nhập lại địa chỉ");
-                        System.out.print("➠");
                         address = sc.nextLine();
                     }
                 } while (address.trim().isEmpty());
@@ -217,7 +213,6 @@ public class UserView {
                     if (address.trim().isEmpty()) {
                         System.out.println("Địa chỉ không được để trống!");
                         System.out.println("Nhập lại địa chỉ");
-                        System.out.print("➠");
                         address = sc.nextLine();
                     }
                 } while (address.trim().isEmpty());
@@ -230,7 +225,7 @@ public class UserView {
     public String inputMobile(SelectFunction choose) {
         switch (choose) {
             case ADD:
-                System.out.println("Nhập số điện thoại (10 số , số thứ 2 là những số 3/5/7/9)");
+                System.out.println("Nhập số điện thoại (10 số, bắt đầu số 0)");
                 break;
             case UPDATE:
                 System.out.println("Nhập số điện thoại mà bạn muốn đổi lại: ");
@@ -241,9 +236,8 @@ public class UserView {
         do {
             mobile = sc.nextLine();
             if (!ValidateUtils.isPhoneValid(mobile)) {
-                System.out.println("Số " + mobile + " không đúng định dạng! Nhập lại!" + "Gồm 10 số và bắt đầu bằng số 0, số thứ 2 là những số 3/5/7/9!");
+                System.out.println("Số " + mobile + " không đúng định dạng! Nhập lại!" + "Gồm 10 số và bắt đầu bằng số 0");
                 System.out.println("Nhập số điện thoại");
-                System.out.print("➠");
                 continue;
             }
             if (userService.existByPhone(mobile)) {
@@ -258,7 +252,7 @@ public class UserView {
     public String inputFullName(SelectFunction choose) {
         switch (choose) {
             case ADD:
-                System.out.println("Nhập họ và tên (vd: Nguyễn Văn A)");
+                System.out.println("Nhập họ và tên");
                 break;
             case UPDATE:
                 System.out.println("Nhập tên mà bạn muốn sửa: ");
@@ -274,7 +268,7 @@ public class UserView {
     }
 
     public String inputPassword() {
-        System.out.println("Nhập mật khẩu (từ 8 đến 20 ký tự), bao gồm số, chữ cái viết hoa, ký tự đặc biệt (:;',?/*~$^+=<> !@#&–_)");
+        System.out.println("Nhập mật khẩu (Nhập số)");
         String password;
         while (!ValidateUtils.isPasswordValid(password = sc.nextLine())) {
             System.out.println("Mật khẩu không đúng định dạng. Nhập lại !!!");

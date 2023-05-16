@@ -51,7 +51,34 @@ public class SortProductView {
         }while (!is);
     }
 
-    public static void showSortByQuantity() {
+    private static void showSortByQuantity() {
+        List<Product> productList = productService.findAll();
+        System.out.println("Sắp xếp tăng dần");
+        SortByQuantityAsc sortByQuantityAsc = new SortByQuantityAsc();
+        productList.sort(sortByQuantityAsc);
+        productView.show(productList);
+        choice();
+    }
+
+    private static void showSortByPrice() {
+        List<Product> productList = productService.findAll();
+        System.out.println("Sắp xếp tăng dần");
+        SortByPriceAsc sortByPriceAsc = new SortByPriceAsc();
+        productList.sort(sortByPriceAsc);
+        productView.show(productList);
+        choice();
+    }
+
+    private static void showSortByName() {
+        List<Product> productList = productService.findAll();
+        System.out.println("Sắp xếp tăng dần ");
+        SortByNameAsc sortByNameAsc = new SortByNameAsc();
+        productList.sort(sortByNameAsc);
+        productView.show(productList);
+        choice();
+    }
+
+    /** public static void showSortByQuantity() {
         boolean flag = true;
         int choice;
         do {
@@ -182,5 +209,5 @@ public class SortProductView {
                 e.printStackTrace();
             }
         }while (!flag);
-    }
+    }*/
 }

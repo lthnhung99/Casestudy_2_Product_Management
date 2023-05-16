@@ -31,18 +31,7 @@ public class OrderItem {
         this.total = total;
         this.orderId = orderId;
     }
-    public static OrderItem parseOrderItem(String raw){
-        OrderItem orderItem = new OrderItem();
-        String [] fields = raw.split(",");
-        orderItem.id = Long.parseLong(fields[0]);
-        orderItem.productId = Long.parseLong(fields[1]);
-        orderItem.productName = fields[2];
-        orderItem.price = Double.parseDouble(fields[3]);
-        orderItem.quantity = Integer.parseInt(fields[4]);
-        orderItem.total = Double.parseDouble(fields[5]);
-        orderItem.orderId = Long.parseLong(fields[6]);
-        return orderItem;
-    }
+
 
     public long getId() {
         return id;
@@ -109,4 +98,18 @@ public class OrderItem {
                 "," + total+
                 "," + orderId;
     }
+    public static OrderItem parseOrderItem(String raw){
+        OrderItem orderItem = new OrderItem();
+        String [] item = raw.split(",");
+        orderItem.id = Long.parseLong(item[0]);
+        orderItem.productId = Long.parseLong(item[1]);
+        orderItem.productName = item[2];
+        orderItem.price = Double.parseDouble(item[3]);
+        orderItem.quantity = Integer.parseInt(item[4]);
+        orderItem.total = Double.parseDouble(item[5]);
+        orderItem.orderId = Long.parseLong(item[6]);
+        return orderItem;
+    }
+
+
 }

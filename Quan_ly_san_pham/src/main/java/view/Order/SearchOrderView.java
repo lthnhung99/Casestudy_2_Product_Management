@@ -30,7 +30,6 @@ public class SearchOrderView {
             menuFindOrder();
             try {
                 System.out.println("Chọn chức năng: ");
-                System.out.print("➱ ");
                 int choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
@@ -162,7 +161,7 @@ public class SearchOrderView {
         System.out.println("2. Tìm kiếm theo khách hàng");
         System.out.println("3. Tìm kiếm theo số điện thoại");
         System.out.println("4. Tìm kiếm theo địa chỉ");
-        System.out.println("5】. Tìm kiếm theo nhân viên");
+        System.out.println("5. Tìm kiếm theo nhân viên");
         System.out.println("6. Quay lại");
         System.out.println("0. Thoát");
 

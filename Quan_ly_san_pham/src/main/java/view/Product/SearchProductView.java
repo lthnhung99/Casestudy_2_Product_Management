@@ -28,7 +28,6 @@ public class SearchProductView {
 
             System.out.println("TÌM KIẾM SẢN PHẨM");
             System.out.println("1. Tìm kiếm theo tên sản phẩm");
-            System.out.println("2. Tìm kiếm theo tên thương hiệu");
             System.out.println("0. Quay lại");
 
             System.out.println("Chọn chức năng: ");

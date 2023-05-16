@@ -18,7 +18,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(long id , long idUser, String name, String phone, String address , double grandTotal  , Instant creatAt ) {
+    public Order(long id, long idUser, String name, String phone, String address, double grandTotal, Instant creatAt) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
@@ -27,6 +27,7 @@ public class Order {
         this.grandTotal = grandTotal;
         this.creatAt = creatAt;
     }
+
     public Order(long orderId, String name, String phone, String address, Instant creatAt) {
         this.id = orderId;
         this.name = name;
@@ -35,19 +36,7 @@ public class Order {
         this.creatAt = creatAt;
     }
 
-    public static Order parseOrder(String raw){
 
-        Order order = new Order();
-        String [] fields = raw.split(",");
-        order.id = Long.parseLong(fields[0]);
-        order.name = fields[5];
-        order.phone =fields[2];
-        order.address = fields[3];
-        order.grandTotal = Double.parseDouble(fields[4]);
-        order.idUser = Long.parseLong(fields[1]);
-        order.creatAt = Instant.parse(fields[6]);
-        return order;
-    }
 
     public long getId() {
         return id;
@@ -99,7 +88,6 @@ public class Order {
     }
 
 
-
     public double getGrandTotal() {
         return grandTotal;
     }
@@ -115,6 +103,7 @@ public class Order {
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
+
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
     }
@@ -122,16 +111,30 @@ public class Order {
     @Override
     public String toString() {
         return id + "," +
-                idUser+
+                idUser +
                 "," +
                 phone +
                 "," +
-                address+
+                address +
                 "," +
-                grandTotal+
+                grandTotal +
                 "," +
                 name +
                 "," +
                 creatAt;
     }
+    public static Order parseOrder(String raw) {
+        Order order = new Order();
+        String[] item = raw.split(",");
+        order.id = Long.parseLong(item[0]);
+        order.idUser = Long.parseLong(item[1]);
+        order.phone = item[2];
+        order.address = item[3];
+        order.grandTotal = Double.parseDouble(item[4]);
+        order.name = item[5];
+        order.creatAt = Instant.parse(item[6]);
+        return order;
+    }
+
+
 }

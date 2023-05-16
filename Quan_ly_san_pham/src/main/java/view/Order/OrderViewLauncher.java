@@ -54,8 +54,7 @@ public class OrderViewLauncher {
         System.out.println("1. Tạo đơn hàng");
         System.out.println("2. Sửa đơn hàng");
         System.out.println("3. Xem đơn hàng");
-        System.out.println("4 Tìm kiếm đơn hàng");
-        System.out.println("5. Thống kê");
+        System.out.println("4. Tìm kiếm đơn hàng");
         System.out.println("6. Quay lại MAIN MENU");
         System.out.println("7. Thoát");
         System.out.println("Chọn chức năng");

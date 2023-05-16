@@ -21,20 +21,7 @@ public class Product {
         this.createAt = createAt;
         this.updateAt = updateAt;
     }
-    public static Product parseProduct(String raw){
-        Product product = new Product();
-        //long idProduct, String nameProduct, double price, int quantity,Instant createAt , Instant updateAt
-        String[] fields = raw.split(",");
-        product.idProduct = Long.parseLong(fields[0]);
-        product.nameProduct = fields[1];
-        product.price = Double.parseDouble(fields[2]);
-        product.quantity = Integer.parseInt(fields[3]);
-        product.createAt = Instant.parse(fields[4]);
-        String temp = fields[5];
-        if(temp != null && !temp.equals("null"))
-            product.updateAt = Instant.parse(temp);
-        return product;
-    }
+
 
     public long getIdProduct() {
         return idProduct;
@@ -93,5 +80,20 @@ public class Product {
                 + quantity + ","
                 + createAt+ ","
                 + updateAt;
+    }
+
+    public static Product parseProduct(String raw){
+        Product product = new Product();
+        //long idProduct, String nameProduct, double price, int quantity,Instant createAt , Instant updateAt
+        String[] item = raw.split(",");
+        product.idProduct = Long.parseLong(item[0]);
+        product.nameProduct = item[1];
+        product.price = Double.parseDouble(item[2]);
+        product.quantity = Integer.parseInt(item[3]);
+        product.createAt = Instant.parse(item[4]);
+        String temp = item[5];
+        if(temp != null && !temp.equals("null"))
+            product.updateAt = Instant.parse(temp);
+        return product;
     }
 }
