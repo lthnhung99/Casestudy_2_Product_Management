@@ -4,7 +4,7 @@ import model.Product;
 import service.ProductService;
 import utils.AppUtils;
 import utils.InstantUtils;
-import view.SelectFunction;
+import view.Select;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
@@ -23,26 +23,26 @@ public class ProductView {
 
     public void addProduct(){
         do {
-            long idProduct =System.currentTimeMillis()/1000;
-            String name = inputNameProduct(SelectFunction.ADD);
-            double price = inputPrice(SelectFunction.ADD);
-            int quantity = inputQuantity(SelectFunction.ADD);
+            long idProduct =System.currentTimeMillis()%100000;
+            String name = inputNameProduct(Select.ADD);
+            double price = inputPrice(Select.ADD);
+            int quantity = inputQuantity(Select.ADD);
             Instant createAt = Instant.now();
             Instant updateAt = Instant.now();
             Product product = new Product(idProduct ,name ,price ,quantity ,createAt , updateAt);
             productService.add(product);
             System.out.println("Đã thêm sản phẩm thành công!");
-            showProduct(SelectFunction.ADD);
-        }while (AppUtils.isRetry(SelectFunction.ADD));
+            showProduct(Select.ADD);
+        }while (AppUtils.isRetry(Select.ADD));
     }
 
     public void removeProduct(){
-        showProduct(SelectFunction.SHOW);
+        showProduct(Select.SHOW);
         System.out.println("Nhập ID muốn xóa:");
         long id = Long.parseLong(sc.nextLine());
         productService.removeById(id);
         System.out.println("Đã xóa sp.");
-        showProduct(SelectFunction.REMOVE);
+        showProduct(Select.REMOVE);
     }
 
     public void updateProduct(){
@@ -111,7 +111,7 @@ public class ProductView {
     }
 
 
-    private int inputQuantity(SelectFunction choose) {
+    private int inputQuantity(Select choose) {
         switch (choose){
             case ADD :
                 System.out.println("Nhập số lượng sp :");
@@ -136,7 +136,7 @@ public class ProductView {
         double price = Double.parseDouble(sc.nextLine());
         product.setPrice(price);
         productService.update(product);
-        showProduct(SelectFunction.UPDATE);
+        showProduct(Select.UPDATE);
         System.out.println("Giá đã được thay đổi");
     }
     private void inputQuantity (int id){
@@ -145,7 +145,7 @@ public class ProductView {
         int quantity = Integer.parseInt(sc.nextLine());
         product.setQuantity(quantity);
         productService.update(product);
-        showProduct(SelectFunction.UPDATE);
+        showProduct(Select.UPDATE);
         System.out.println("Số lượng đã được thay đổi");
     }
     private void inputName (int id){
@@ -154,12 +154,12 @@ public class ProductView {
         String nameProduct = sc.nextLine();
         product.setNameProduct(nameProduct);
         productService.update(product);
-        showProduct(SelectFunction.UPDATE);
+        showProduct(Select.UPDATE);
         System.out.println("Tên sản phẩm đã được thay đổi");
     }
 
 
-    private double inputPrice(SelectFunction choose) {
+    private double inputPrice(Select choose) {
         switch (choose){
             case ADD:
                 System.out.println("Nhập giá sp : ");
@@ -178,7 +178,7 @@ public class ProductView {
         return price;
     }
 
-    private String inputNameProduct(SelectFunction choose) {
+    private String inputNameProduct(Select choose) {
         String nameProduct = "";
         switch (choose) {
             case ADD:
@@ -194,7 +194,7 @@ public class ProductView {
         return nameProduct;
     }
 
-    public void showProduct(SelectFunction choose) {
+    public void showProduct(Select choose) {
         List<Product> productList = productService.findAll();
         System.out.println("DANH SÁCH SẢN PHẨM");
         System.out.printf("%-25s %-25s %-15s %-20s\n", "ID", "Tên ", "Giá", "Số lượng");
@@ -207,7 +207,7 @@ public class ProductView {
         }
     }
 
-    public void showProduct1( List<Product>products,SelectFunction choose) {
+    public void showProduct1(List<Product>products, Select choose) {
 //        List<Product> productList = productService.findAll();
         System.out.println("DANH SÁCH SẢN PHẨM");
         System.out.printf("%-25s %-25s %-15s %-20s %-20s %-20s\n", "ID", "Tên ", "Giá", "Số lượng","Thời gian " ,"Thời gian cập nhật");
@@ -221,7 +221,7 @@ public class ProductView {
                     product.getUpdateAt() == null ? "" : InstantUtils.instantToString(product.getUpdateAt())
             );
         }
-        if (choose != SelectFunction.UPDATE && choose != SelectFunction.REMOVE && choose != SelectFunction.SEARCH) {
+        if (choose != Select.UPDATE && choose != Select.REMOVE && choose != Select.SEARCH) {
         }
     }
 

@@ -2,12 +2,10 @@ package view.Order;
 
 import view.AdminView;
 import view.MainLauncher;
-import view.SelectFunction;
+import view.Select;
 import view.User.MenuUserView;
-import view.User.UserViewLauncher;
 
 import java.util.Scanner;
-
 
 
 public class OrderViewLauncher {
@@ -28,17 +26,17 @@ public class OrderViewLauncher {
                         orderView.updateOrder(AdminView.idOnlineUser);
                         break;
                     case 3:
-                        orderView.showOrder(SelectFunction.SHOW);
+                        orderView.showOrder(Select.SHOW);
                         break;
-                    case 4 :
+                    case 4:
                         SearchOrderView searchOrderView = new SearchOrderView();
                         searchOrderView.search(AdminView.idOnlineUser);
                         break;
 
-                    case 6:
+                    case 5:
                         MainLauncher.menuOption();
                         break;
-                    case 7:
+                    case 6:
                         MenuUserView.login();
                         break;
                     default:
@@ -50,14 +48,18 @@ public class OrderViewLauncher {
     }
 
     public static void menuOrder() {
-        System.out.println("QUẢN LÝ ĐƠN HÀNG");
-        System.out.println("1. Tạo đơn hàng");
-        System.out.println("2. Sửa đơn hàng");
-        System.out.println("3. Xem đơn hàng");
-        System.out.println("4. Tìm kiếm đơn hàng");
-        System.out.println("6. Quay lại MAIN MENU");
-        System.out.println("7. Thoát");
-        System.out.println("Chọn chức năng");
+        System.out.println("╔═════════════════════════════════════════════════════╗");
+        System.out.println("║               QUẢN LÝ ĐƠN HÀNG                      ║");
+        System.out.println("╠═════════════════════════════════════════════════════╣");
+        System.out.println("║ Options:                                            ║");
+        System.out.println("║ ▶ 1.Tạo đơn hàng                                    ║");
+        System.out.println("║ ▶ 2.Sửa đơn hàng                                    ║");
+        System.out.println("║ ▶ 3.Xem đơn hàng                                    ║");
+        System.out.println("║ ▶ 4.Tìm kiếm đơn hàng                               ║");
+        System.out.println("║ ▶ 5.Quay lại MAIN MENU                              ║");
+        System.out.println("║ ▶ 6.Thoát                                           ║");
+        System.out.println("║ ▶ Chọn chức năng                                    ║");
+        System.out.println("╚═════════════════════════════════════════════════════╝");
 
     }
 }

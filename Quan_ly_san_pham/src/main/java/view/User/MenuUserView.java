@@ -4,7 +4,7 @@ import view.AdminView;
 import view.Order.OrderView;
 import view.Order.SearchOrderView;
 import view.Product.ProductView;
-import view.SelectFunction;
+import view.Select;
 
 import java.util.Scanner;
 
@@ -16,29 +16,42 @@ public class MenuUserView {
     static ProductView productView = new ProductView();
 
     public static void menuOderUser() {
+        System.out.println("╔═════════════════════════════════════════════════════╗");
+        System.out.println("║                       MAIN MENU                     ║");
+        System.out.println("╠═════════════════════════════════════════════════════╣");
+        System.out.println("║ Options:                                            ║");
+        System.out.println("║ ▶ 1.Tạo đơn hàng                                    ║");
+        System.out.println("║ ▶ 2.Chỉnh sửa đơn hàng                              ║");
+        System.out.println("║ ▶ 3.Xem đơn hàng                                    ║");
+        System.out.println("║ ▶ 4.Tìm kiếm đơn hàng                               ║");
+        System.out.println("║ ▶ 0.Đăng xuất                                       ║");
+        System.out.println("║ ▶ Chọn chức năng                                    ║");
+        System.out.println("╚═════════════════════════════════════════════════════╝");
 
-        System.out.println("MAIN MENU");
-        System.out.println("1. Tạo đơn hàng");
-        System.out.println("2. Chỉnh sửa đơn hàng");
-        System.out.println("3. Xem đơn hàng");
-        System.out.println(" 4. Tìm kiếm đơn hàng");
-        System.out.println("0. Đăng xuất");
-        System.out.println("Chọn chức năng:");
     }
     public static void menuUser() {
-        System.out.println("QUẢN LÝ NHÂN VIÊN");
-        System.out.println("1. Thêm nhân viên");
-        System.out.println("2. Sửa thông tin nhân viên");
-        System.out.println("3. Xóa nhân viên");
-        System.out.println("4. Hiện thông tin nhân viên");
-        System.out.println("5. Quay lại MAIN MENU");
-        System.out.println("6. Thoát");
+        System.out.println("╔═════════════════════════════════════════════════════╗");
+        System.out.println("║                  QUẢN LÝ NHÂN VIÊN                  ║");
+        System.out.println("╠═════════════════════════════════════════════════════╣");
+        System.out.println("║ Options:                                            ║");
+        System.out.println("║ ▶ 1.Thêm nhân viên                                  ║");
+        System.out.println("║ ▶ 2.Sửa thông tin nhân viên                         ║");
+        System.out.println("║ ▶ 3.Xóa nhân viên                                   ║");
+        System.out.println("║ ▶ 4.Hiện thông tin nhân viên                        ║");
+        System.out.println("║ ▶ 5.Quay lại MAIN MENU                              ║");
+        System.out.println("║ ▶ 6.Thoát                                           ║");
+        System.out.println("╚═════════════════════════════════════════════════════╝");
 
     }
     public static void login() {
-        System.out.println("1.Đăng nhập");
-        System.out.println("0.Thoát");
-        System.out.println("Chọn chức năng (chọn số) :");
+        System.out.println("╔═════════════════════════════════════════════════════╗");
+        System.out.println("║                  CỬA HÀNG MỸ PHẨM                   ║");
+        System.out.println("╠═════════════════════════════════════════════════════╣");
+        System.out.println("║ Options:                                            ║");
+        System.out.println("║ ▶ 1.Đăng nhập                                       ║");
+        System.out.println("║ ▶ 0.Thoát                                           ║");
+        System.out.println("║ ▶ Chọn chức năng                                    ║");
+        System.out.println("╚═════════════════════════════════════════════════════╝");
         try {
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
@@ -71,7 +84,7 @@ public class MenuUserView {
                     break;
                 case 3:
                     OrderView orderView2 = new OrderView();
-                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , SelectFunction.SHOW);
+                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , Select.SHOW);
                     break;
                 case 4 :
                     SearchOrderView searchOrderView = new SearchOrderView();

@@ -37,7 +37,6 @@ public class Order {
     }
 
 
-
     public long getId() {
         return id;
     }
@@ -110,22 +109,12 @@ public class Order {
 
     @Override
     public String toString() {
-        return id + "," +
-                idUser +
-                "," +
-                phone +
-                "," +
-                address +
-                "," +
-                grandTotal +
-                "," +
-                name +
-                "," +
-                creatAt;
+        return id + "," + idUser + "," + phone + "," + address + "," + grandTotal + "," + name + "," + creatAt;
     }
-    public static Order parseOrder(String raw) {
+
+    public static Order parseOrder(String line) {
         Order order = new Order();
-        String[] item = raw.split(",");
+        String[] item = line.split(",");
         order.id = Long.parseLong(item[0]);
         order.idUser = Long.parseLong(item[1]);
         order.phone = item[2];

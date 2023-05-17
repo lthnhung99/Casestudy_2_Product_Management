@@ -7,7 +7,7 @@ import service.*;
 import utils.AppUtils;
 import utils.InstantUtils;
 import view.Product.ProductView;
-import view.SelectFunction;
+import view.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class OrderItemView {
                 switch (choices){
                     case "y":
                         checkOrderItem = true;
-                        productView.showProduct(SelectFunction.SHOW);
+                        productView.showProduct(Select.SHOW);
                         break;
                     case "n":
                         checkOrderItem = false;
@@ -98,7 +98,7 @@ public class OrderItemView {
     }
     public void removeOrderItem() {
 
-        long id = inputIdOrderItem(SelectFunction.REMOVE);
+        long id = inputIdOrderItem(Select.REMOVE);
         int option;
         boolean isTrue = true;
         do {
@@ -136,7 +136,7 @@ public class OrderItemView {
         boolean isTrue = true;
         do {
             try {
-                long id = inputIdOrderItem(SelectFunction.UPDATE);
+                long id = inputIdOrderItem(Select.UPDATE);
                 OrderItem orderItem = orderItemService.findById(id);
                 MenuOrderItem.menuUpdateOrderItem();
                 option = Integer.parseInt(scanner.nextLine());
@@ -167,8 +167,8 @@ public class OrderItemView {
         boolean flag = true;
         do {
             try {
-                productView.showProduct1(productService.findAll(), SelectFunction.SHOW);
-                long productId = inputProductId(SelectFunction.UPDATE);
+                productView.showProduct1(productService.findAll(), Select.SHOW);
+                long productId = inputProductId(Select.UPDATE);
                 orderItem.setProductId(productId);
                 Product product = productService.findProductById(productId);
                 orderItem.setPrice(product.getPrice());
@@ -190,7 +190,7 @@ public class OrderItemView {
         do {
             try {
                 int oldQuantity = orderItem.getQuantity();
-                int newQuantity = inputQuantity(SelectFunction.UPDATE, orderItem.getProductId());
+                int newQuantity = inputQuantity(Select.UPDATE, orderItem.getProductId());
                 setProductQuantity(orderItem.getProductId(), newQuantity - oldQuantity);
                 orderItem.setQuantity(newQuantity);
                 orderItem.setTotal(orderItem.getPrice()*newQuantity);
@@ -222,7 +222,7 @@ public class OrderItemView {
         orderService.update(order);
     }
 
-    private long inputProductId(SelectFunction choose) {
+    private long inputProductId(Select choose) {
         switch (choose) {
             case ADD -> System.out.println("Nhập ID sản phẩm: ");
 
@@ -246,7 +246,7 @@ public class OrderItemView {
         } while (flag);
         return id;
     }
-    private int inputQuantity(SelectFunction choose, long productId) {
+    private int inputQuantity(Select choose, long productId) {
         Product product = productService.findProductById(productId);
         switch (choose) {
             case ADD -> System.out.println("Nhập số lượng sản phẩm: ");
@@ -311,7 +311,7 @@ public class OrderItemView {
 
     }
 
-    public void showOrderItem1(List<OrderItem> orderItems, SelectFunction choose) {
+    public void showOrderItem1(List<OrderItem> orderItems, Select choose) {
         System.out.println("GIỎ HÀNG");
         System.out.printf("| %-5s%-9s | %-11s%-19s | %-7s%-11s | %-2s%-10s | %-5s%-17s |\n",
                 "", "ID",
@@ -329,25 +329,24 @@ public class OrderItemView {
                     "", AppUtils.doubleToVND(orderItem.getTotal())
             );
         }
-        if (choose != SelectFunction.UPDATE && choose != SelectFunction.REMOVE && choose != SelectFunction.SEARCH);
+        if (choose != Select.UPDATE && choose != Select.REMOVE && choose != Select.SEARCH);
     }
 
 
-    public void showAllItemOfOrder(SelectFunction  selectFunction) {
+    public void showAllItemOfOrder(Select selectFunction) {
         boolean flag = true;
         long orderId;
         do {
-            if (selectFunction == SelectFunction.SHOW){
+            if (selectFunction == Select.SHOW){
                 System.out.println("Chọn 'y' để xem chi tiết đơn hàng \t|\t 'q' để trở lại.");
             }
-            System.out.print(" => ");
             String choose = scanner.nextLine();
             switch (choose) {
                 case "y":
                     System.out.println("XEM CHI TIẾT ĐƠN HÀNG");
-                    orderId = inputIdOrder(SelectFunction.SHOW);
+                    orderId = inputIdOrder(Select.SHOW);
                     System.out.println("ID Order:" + orderId);
-                    showOrderItem1(orderItemService.findByOrderId(orderId), SelectFunction.PRINT);
+                    showOrderItem1(orderItemService.findByOrderId(orderId), Select.PRINT);
                     isRetryAddOrderItem(orderId);
                 case "q":
                     flag = false;
@@ -364,7 +363,7 @@ public class OrderItemView {
             String option = scanner.nextLine();
             switch (option) {
                 case "t":
-                    productView.showProduct1(productService.findAll(), SelectFunction.SHOW);
+                    productView.showProduct1(productService.findAll(), Select.SHOW);
                     addOrderItem(orderId);
                     setGrandTotal(orderId);
                     checkContinueOrderItem(orderId);
@@ -414,7 +413,7 @@ public class OrderItemView {
         orderItemService.removeById(orderId);
     }
 
-    private long inputIdOrder(SelectFunction choose) {
+    private long inputIdOrder(Select choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID : ");
@@ -437,7 +436,7 @@ public class OrderItemView {
         } while (!flag);
         return id;
     }
-    private long inputIdOrderItem(SelectFunction choose) {
+    private long inputIdOrderItem(Select choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID : ");
@@ -464,12 +463,10 @@ public class OrderItemView {
     public void printProductInvoice(long orderId) {
         List<OrderItem> orderItems = orderItemService.findByOrderId(orderId);
         Order order = orderService.findById(orderId);
-
-        System.out.println("HÓA ĐƠN THANH TOÁN");
-        System.out.println("│                                                                                                 │");
-        System.out.printf("│   Người mua: %-25s  ĐƠN THANH TOÁN           Thời gian: %16s    │\n", order.getName(), InstantUtils.instantToString(order.getCreatAt()));
-        System.out.printf("│   Số điện thoại: %-30s                                     │\n", order.getPhone());
-        System.out.printf("│   Địa chỉ: %-30s                                    │\n", order.getAddress());
+        System.out.println("│                                  HÓA ĐƠN THANH TOÁN                                             │");
+        System.out.printf("│   Người mua: %-25s  ĐƠN THANH TOÁN           Thời gian: %16s     │\n", order.getName(), InstantUtils.instantToString(order.getCreatAt()));
+        System.out.printf("│   Số điện thoại: %-30s                                                  │\n", order.getPhone());
+        System.out.printf("│   Địa chỉ: %-30s                                                        │\n", order.getAddress());
 
         System.out.printf("│ %-2s%-5s | %-11s%-19s | %-7s%-11s | %-1s%-9s | %-2s%-16s │\n",
                 "", "STT",

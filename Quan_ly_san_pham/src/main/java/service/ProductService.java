@@ -7,20 +7,21 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
 
     private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\product.csv";
 
     public static ProductService productService;
 
-    public ProductService(){
+    public ProductService() {
 
     }
 
-    public static ProductService getProductService(){
-        if (productService== null){
+    public static ProductService getProductService() {
+        if (productService == null) {
             productService = new ProductService();
-        }return productService;
+        }
+        return productService;
     }
 
     public double getPrice(long id) {
@@ -30,7 +31,7 @@ public class ProductService implements IProductService{
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         List<String> records = FileUtils.readFile(PATH);
-        for (String record : records ){
+        for (String record : records) {
             products.add(Product.parseProduct(record));
         }
         return products;
@@ -45,14 +46,14 @@ public class ProductService implements IProductService{
     public void add(Product newProduct) {
         List<Product> products = findAll();
         products.add(newProduct);
-        FileUtils.writeFile(PATH,products);
+        FileUtils.writeFile(PATH, products);
     }
 
     @Override
     public void removeById(long id) {
         List<Product> products = findAll();
-        products.removeIf(product -> product.getIdProduct()==id);
-        FileUtils.writeFile(PATH,products);
+        products.removeIf(product -> product.getIdProduct() == id);
+        FileUtils.writeFile(PATH, products);
     }
 
     @Override
@@ -64,14 +65,14 @@ public class ProductService implements IProductService{
     public void update(Product newProduct) {
         List<Product> products = findAll();
         for (Product product : products) {
-            if(product.getIdProduct()== newProduct.getIdProduct()){
+            if (product.getIdProduct() == newProduct.getIdProduct()) {
                 product.setNameProduct(newProduct.getNameProduct());
                 product.setPrice(newProduct.getPrice());
                 product.setQuantity(newProduct.getQuantity());
                 product.setUpdateAt(Instant.now());
             }
         }
-        FileUtils.writeFile(PATH,products);
+        FileUtils.writeFile(PATH, products);
 
     }
 
@@ -83,7 +84,7 @@ public class ProductService implements IProductService{
     @Override
     public Product findById(long id) {
         List<Product> products = findAll();
-        for (Product product:products) {
+        for (Product product : products) {
             if (id == product.getIdProduct()) {
                 return product;
             }
@@ -104,7 +105,7 @@ public class ProductService implements IProductService{
 
     public void updateQuantity(long id, int quantity) {
         List<Product> products = findAll();
-        for (Product product: products) {
+        for (Product product : products) {
             if (product.getIdProduct() == id) {
                 if (product.getQuantity() >= quantity) {
                     product.setQuantity(product.getQuantity() - quantity);

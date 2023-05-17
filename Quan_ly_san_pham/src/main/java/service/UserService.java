@@ -27,7 +27,7 @@ public class UserService implements IUserService {
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         List<String> records = FileUtils.readFile(PATH);
-        for (String record : records){
+        for (String record : records) {
             users.add(User.parseUser(record));
         }
         return users;
@@ -35,17 +35,17 @@ public class UserService implements IUserService {
 
     @Override
     public void add(User newUser) {
-        List<User>users = findAll();
+        List<User> users = findAll();
         users.add(newUser);
         newUser.setCreateAt(Instant.now());
-        FileUtils.writeFile(PATH,users);
+        FileUtils.writeFile(PATH, users);
     }
 
     @Override
     public void removeById(long id) {
         List<User> users = findAll();
-        users.removeIf(user -> user.getIdUser()==id);
-        FileUtils.writeFile(PATH,users);
+        users.removeIf(user -> user.getIdUser() == id);
+        FileUtils.writeFile(PATH, users);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class UserService implements IUserService {
     public String findNameById(long id) {
         List<User> users = findAll();
         for (User user : users) {
-            if ( user.getIdUser()== id){
+            if (user.getIdUser() == id) {
                 return user.getFullName();
             }
         }

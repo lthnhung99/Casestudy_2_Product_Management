@@ -21,8 +21,8 @@ public class AdminView {
 
     public void adminLogin() {
         boolean isRetry = false;
-        System.out.println(" CỬA HÀNG ");
-        System.out.println(" Đăng nhập");
+        System.out.println(" *************CỬA HÀNG MỸ PHẨM************* ");
+        System.out.println(" ---------------Đăng nhập---------------");
         do {
             System.out.println("Tên tài khoản: ");
             String username = AppUtils.retryString("Username");

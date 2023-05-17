@@ -3,18 +3,18 @@ package model;
 import java.time.Instant;
 
 public class User {
-    private long idUser ;
+    private long idUser;
     private String userName;
     private String passWord;
     private String fullName;
-    private String mobile ;
+    private String mobile;
     private String email;
     private String address;
     private Role role;
     private Instant createAt;
     private Instant updateAt;
 
-    public User(){
+    public User() {
 
     }
 
@@ -41,7 +41,6 @@ public class User {
         this.address = address;
         this.role = role;
     }
-
 
 
     public long getIdUser() {
@@ -129,9 +128,9 @@ public class User {
         return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,", idUser, userName, passWord, fullName, mobile, email, address, role, createAt, updateAt);
     }
 
-    public static User parseUser(String raw){
+    public static User parseUser(String line) {
         User user = new User();
-        String[] item = raw.split(",");
+        String[] item = line.split(",");
         user.idUser = Long.parseLong(item[0]);
         user.userName = item[1];
         user.passWord = item[2];
@@ -142,7 +141,7 @@ public class User {
         user.role = Role.parseRole(item[7]);
         user.createAt = Instant.parse(item[8]);
         String temp = item[9];
-        if(temp != null && !temp.equals("null"))
+        if (temp != null && !temp.equals("null"))
             user.updateAt = Instant.parse(temp);
         return user;
     }

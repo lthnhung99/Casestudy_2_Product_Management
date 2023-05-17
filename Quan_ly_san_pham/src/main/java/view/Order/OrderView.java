@@ -7,13 +7,9 @@ import utils.InstantUtils;
 import utils.ValidateUtils;
 import view.AdminView;
 import view.Product.ProductView;
-import view.SelectFunction;
-import view.User.MenuUserView;
-import view.User.UserView;
+import view.Select;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,47 +17,48 @@ public class OrderView {
     public static Scanner scanner = new Scanner(System.in);
     public final IProductService productService;
     public final IOrderService orderService;
-    public final OrderItemService orderItemService ;
+    public final OrderItemService orderItemService;
 
     public final IUserService userService;
 
-    public final User  user = new User();
+    public final User user = new User();
     public final OrderItemView orderItemView = new OrderItemView();
 
-    public OrderView(){
+    public OrderView() {
         productService = ProductService.getProductService();
         orderService = OrderService.orderService();
         orderItemService = OrderItemService.orderItemService();
         userService = UserService.getUserService();
     }
 
-    public void addOrder(long idUser){
+    public void addOrder(long idUser) {
         try {
             idUser = AdminView.idOnlineUser;
             Order order = new Order();
-            long orderId = System.currentTimeMillis() %100000;
+            long orderId = System.currentTimeMillis() % 100000;
             Instant creatAt = Instant.now();
             ProductView productView = new ProductView();
-            productView.showProduct(SelectFunction.ADD);
+            productView.showProduct(Select.ADD);
             order.setCreatAt(creatAt);
             order.setIdUser(idUser);
             order.setId(orderId);
             orderItemView.addOrderItem(orderId);
             showOrderItemsByOrder(order);
-            String name = inputName(SelectFunction.ADD);
-            String phone = inputPhone(SelectFunction.ADD);
-            String address = inputAddress(SelectFunction.ADD);
+            String name = inputName(Select.ADD);
+            String phone = inputPhone(Select.ADD);
+            String address = inputAddress(Select.ADD);
             order.setName(name);
             order.setPhone(phone);
             order.setAddress(address);
             order.setGrandTotal(orderItemService.getGrandTotal1(orderId));
             orderService.add(order);
             System.out.println("Tạo đơn thành công!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Nhập sai!!! Vui lòng nhập lại!");
             e.printStackTrace();
         }
     }
+
     public void updateOrder(long userId) {
         User user = userService.findById(userId);
         int option;
@@ -69,10 +66,10 @@ public class OrderView {
         do {
             try {
                 if (user.getRole() == Role.ADMIN)
-                    showOrder1(orderService.findAll(), SelectFunction.UPDATE);
+                    showOrder1(orderService.findAll(), Select.UPDATE);
                 if (user.getRole() == Role.USER)
-                    showOrder1(orderService.findIdUserByOrder(userId), SelectFunction.UPDATE);
-                long id = inputId(SelectFunction.UPDATE);
+                    showOrder1(orderService.findIdUserByOrder(userId), Select.UPDATE);
+                long id = inputId(Select.UPDATE);
                 Order order = orderService.findById(id);
                 MenuOrder.menuUpdateOrder();
                 option = Integer.parseInt(scanner.nextLine());
@@ -90,7 +87,7 @@ public class OrderView {
                         updateOrderItem(order);
                         orderItemView.setGrandTotal(order.getId());
                         break;
-                    case 5 :
+                    case 5:
                         isTrue = false;
                         break;
                     case 0:
@@ -102,7 +99,7 @@ public class OrderView {
                         break;
                 }
                 // isTrue = case4:
-                isTrue = option != 6 && AppUtils.isRetry(SelectFunction.UPDATE);
+                isTrue = option != 6 && AppUtils.isRetry(Select.UPDATE);
 
             } catch (Exception e) {
                 System.out.println("Sai cú pháp. Vui lòng nhập lại!");
@@ -110,48 +107,48 @@ public class OrderView {
         } while (isTrue);
 
     }
+
     public void updateOrderItem(Order order) {
         boolean isTrue = true;
         String choose;
         do {
             try {
                 if (orderItemService.findByOrderId(order.getId()) != null) {
-                    orderItemView.showOrderItem1(orderItemService.findByOrderId(order.getId()), SelectFunction.UPDATE);
+                    orderItemView.showOrderItem1(orderItemService.findByOrderId(order.getId()), Select.UPDATE);
                     System.out.println(" Chọn 't' để thêm sản phẩm \t|\t  'y' để sửa sản phẩm \t|\t 'x' để xóa sản phẩm trong giỏ hàng ");
-                    System.out.print("=>");
                     choose = scanner.nextLine();
                     switch (choose) {
-                        case "t" :
+                        case "t":
                             ProductView productView = new ProductView();
-                            productView.showProduct(SelectFunction.SHOW);
+                            productView.showProduct(Select.SHOW);
                             orderItemView.addOrderItem(order.getId());
                             showOrderItemsByOrder(order);
                             isTrue = false;
                             break;
-                        case "y" :
+                        case "y":
                             orderItemView.updateOrderItem();
                             isTrue = false;
                             break;
-                        case "x" :
+                        case "x":
                             orderItemView.removeOrderItem();
                             isTrue = false;
                             break;
-                        default :
+                        default:
                             System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
                     }
                 } else {
-                    System.out.println("Giỏ hàng rỗng!");
+                    System.out.println("Giỏ hàng trống!");
                     System.out.println("Chọn 'y' để thêm sản phẩm \t|\t 'q' để quay lại");
                     choose = scanner.nextLine();
                     switch (choose) {
-                        case "y" :
+                        case "y":
                             ProductView productView = new ProductView();
-                            productView.showProduct(SelectFunction.SHOW);
+                            productView.showProduct(Select.SHOW);
                             orderItemView.addOrderItem(order.getId());
                             break;
-                        case "q" :
+                        case "q":
                             isTrue = false;
-                        default :
+                        default:
                             System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
                             isTrue = true;
                     }
@@ -164,27 +161,27 @@ public class OrderView {
     }
 
     private void updateAddress(Order order) {
-        String address = inputAddress(SelectFunction.UPDATE);
+        String address = inputAddress(Select.UPDATE);
         order.setAddress(address);
         orderService.update(order);
         System.out.println("Cập nhật địa chỉ thành công!");
     }
 
     private void updatePhone(Order order) {
-        String phone = inputPhone(SelectFunction.UPDATE);
+        String phone = inputPhone(Select.UPDATE);
         order.setPhone(phone);
         orderService.update(order);
         System.out.println("Cập nhật số điện thoại thành công!");
     }
 
     private void updateFullName(Order order) {
-        String fullName = inputName(SelectFunction.UPDATE);
+        String fullName = inputName(Select.UPDATE);
         order.setName(fullName);
         orderService.update(order);
         System.out.println("Cập nhật tên khách hàng thành công!");
     }
 
-    private long inputId(SelectFunction choose) {
+    private long inputId(Select choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID đơn hàng: ");
@@ -211,24 +208,23 @@ public class OrderView {
         System.out.println("Danh sách các món bạn đang chọn");
         orderItemView.showOrderItem(order);
     }
-    private String inputAddress(SelectFunction choose) {
+
+    private String inputAddress(Select choose) {
         String address;
         do {
-            System.out.println("Nhập địa chỉ (Huế )");
-            System.out.print("➤ ");
+            System.out.println("Nhập địa chỉ");
             address = scanner.nextLine();
             if (address.trim().isEmpty()) {
                 System.out.println("Địa chỉ không được để trống!!");
-                System.out.println("Nhập lại địa chỉ:(vd:Huế )");
+                System.out.println("Nhập lại địa chỉ");
             }
         } while (address.trim().isEmpty());
         return address;
 
     }
 
-    private String inputPhone(SelectFunction choose) {
+    private String inputPhone(Select choose) {
         System.out.println("Nhập số điện thoại(Gồm 10 số, bắt đầu là số 0)");
-        System.out.print("➤ ");
         String phone = scanner.nextLine();
         while (!ValidateUtils.isPhoneValid(phone)) {
             System.out.println("Số điện thoại(Gồm 10 số, bắt đầu là số 0)");
@@ -237,23 +233,21 @@ public class OrderView {
         return phone;
     }
 
-    private String inputName(SelectFunction choose) {
+    private String inputName(Select choose) {
         System.out.println("Nhập chức năng:");
-        System.out.println("Nhập họ và tên(Tên phải viết hoa chữ cái đầu)");
+        System.out.println("Nhập họ và tên(Tên phải viết hoa chữ cái đầu, chứa hơn 10 ký tự)");
 
         String name = scanner.nextLine();
         while (!ValidateUtils.isFullNameValid(name)) {
             System.out.println("Tên " + name + " không hợp lệ!" + "Vui lòng nhập lại" + "Tên phải viết hoa chữ cái đầu, có dấu");
-            System.out.println("Nhập tên(Tên phải viết hoa chữ cái đầu");
-
+            System.out.println("Nhập tên(Tên phải viết hoa chữ cái đầu, chứa hơn 10 ký tự");
             name = scanner.nextLine();
         }
         return name;
     }
 
-    public void showOrder(SelectFunction choose){
+    public void showOrder(Select choose) {
         List<Order> orders = orderService.findAll();
-//        id + "," + userId+ "," + phone + "," + address+ "," + grandTotal+ "," + name + "," + creatAt+ ","+ updateAt;
         System.out.println(" DANH SÁCH ĐƠN HÀNG ");
         System.out.printf("| %-5s%-9s | %-8s%-18s | %-6s%-10s | %-5s%-24s  | %-7s%-15s | %-11s%-24s | %-2s%-20s |\n",
                 "", "ID",
@@ -267,21 +261,21 @@ public class OrderView {
         for (Order order : orders) {
             System.out.printf("| %-2s%-12s | %-3s%-23s | %-3s%-13s | %-5s%-24s  | %-4s%-18s | %-2s%-33s | %-2s%-20s |\n",
                     "", order.getId(),
-                    "",order.getName() ,
+                    "", order.getName(),
                     "", order.getPhone(),
                     "", order.getAddress(),
                     "", order.getGrandTotal(),
-                    "", userService.findNameById(order.getIdUser()) + " (" + order.getIdUser()+ ")" ,
+                    "", userService.findNameById(order.getIdUser()) + " (" + order.getIdUser() + ")",
                     "", InstantUtils.instantToString(order.getCreatAt())
             );
         }
 
-        if (choose == SelectFunction.SHOW || choose == SelectFunction.PRINT) {
+        if (choose == Select.SHOW || choose == Select.PRINT) {
             orderItemView.showAllItemOfOrder(choose);
         }
     }
 
-    public void showOrdersOfEmployee(long userId , SelectFunction choose){
+    public void showOrdersOfEmployee(long userId, Select choose) {
         List<Order> orders = orderService.findIdUserByOrder(userId);
         if (orders.size() != 0) {
 //        id + "," + userId+ "," + phone + "," + address+ "," + grandTotal+ "," + name + "," + creatAt+ ","+ updateAt;
@@ -309,12 +303,13 @@ public class OrderView {
             }
 
             orderItemView.showAllItemOfOrder(choose);
-        }else {
-            System.out.println("Danh sách trống . Hãy thêm đơn hàng.");
+        } else {
+            System.out.println("Danh sách trống. Hãy thêm đơn hàng.");
             addToEmptyList(userId);
         }
     }
-    public void addToEmptyList(long orderId ){
+
+    public void addToEmptyList(long orderId) {
         boolean flag = true;
         do {
             System.out.println(" Chọn 't' để thêm sản phẩm \t|\t 'q' để quay lại.");
@@ -332,7 +327,7 @@ public class OrderView {
         } while (flag);
     }
 
-    public void showOrder1(List<Order> orders, SelectFunction choose){
+    public void showOrder1(List<Order> orders, Select choose) {
 //        id + "," + userId+ "," + phone + "," + address+ "," + grandTotal+ "," + name + "," + creatAt+ ","+ updateAt;
         System.out.println("DANH SÁCH ĐƠN HÀNG");
         System.out.printf("| %-5s%-9s | %-8s%-18s | %-6s%-10s | %-5s%-24s  | %-7s%-15s | %-11s%-24s | %-2s%-20s |\n",
@@ -352,12 +347,12 @@ public class OrderView {
                     "", order.getPhone(),
                     "", order.getAddress(),
                     "", order.getGrandTotal(),
-                    "", userService.findNameById(order.getIdUser()) + " (" + order.getIdUser()+ ")" ,
+                    "", userService.findNameById(order.getIdUser()) + " (" + order.getIdUser() + ")",
                     "", InstantUtils.instantToString(order.getCreatAt())
             );
         }
 
-        if (choose == SelectFunction.SHOW ) {
+        if (choose == Select.SHOW) {
             orderItemView.showAllItemOfOrder(choose);
         }
     }

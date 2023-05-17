@@ -1,5 +1,5 @@
 package view;
 
-public enum SelectFunction {
+public enum Select {
     ADD , REMOVE , UPDATE , SHOW , SEARCH , PRINT
 }

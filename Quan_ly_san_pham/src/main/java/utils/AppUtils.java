@@ -1,6 +1,6 @@
 package utils;
 
-import view.SelectFunction;
+import view.Select;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -37,26 +37,28 @@ public class AppUtils {
         } while (true);
         return option;
     }
+
     public static double retryParseDouble() {
         double result;
         do {
             try {
                 result = Double.parseDouble(sc.nextLine());
                 return result;
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 System.out.println("Nhập sai! Vui lòng nhập lại!!!");
             }
-        }while (true);
+        } while (true);
     }
+
     public static String retryString(String fieldName) {
         String result;
-        while ((result= sc.nextLine()).isEmpty()) {
+        while ((result = sc.nextLine()).isEmpty()) {
             System.out.printf("%s không được để trống\n", fieldName);
         }
         return result;
     }
 
-    public static boolean isRetry(SelectFunction choose) {
+    public static boolean isRetry(Select choose) {
         do {
             switch (choose) {
                 case ADD:
@@ -88,8 +90,9 @@ public class AppUtils {
                 default:
                     System.out.println("Chọn chức năng không đúng! Vui lòng nhập lại.");
             }
-        }while (true);
+        } while (true);
     }
+
     public static void exit() {
         System.out.println("\t Cảm ơn quý khách. Hẹn gặp lại !");
         System.exit(0);
@@ -114,19 +117,20 @@ public class AppUtils {
         return decimalFormat.format(value);
     }
 
-    public static void pressToContinue(){
+    public static void pressToContinue() {
         System.out.println("Ấn nút bất kỳ để tiếp tục. ");
         sc.nextLine();
     }
 
     public static void menuDelete() {
-
-        System.out.println("BẠN CÓ MUỐN XÓA KHÔNG?");
-
-        System.out.println("1. Có");
-        System.out.println("2. Không");
-
-        System.out.println("Nhập lựa chọn: ");
+        System.out.println("╔═════════════════════════════════════════════════════╗");
+        System.out.println("║               BẠN CÓ MUỐN XÓA KHÔNG                 ║");
+        System.out.println("╠═════════════════════════════════════════════════════╣");
+        System.out.println("║ Options:                                            ║");
+        System.out.println("║ ▶ 1.Có                                              ║");
+        System.out.println("║ ▶ 2.Không                                           ║");
+        System.out.println("║ ▶ Nhập lựa chọn                                     ║");
+        System.out.println("╚═════════════════════════════════════════════════════╝");
 
     }
 }

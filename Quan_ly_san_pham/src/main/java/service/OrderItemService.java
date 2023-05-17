@@ -6,22 +6,23 @@ import utils.FileUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderItemService implements IOrderItemService{
-    private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\model\\OrderItem.java";
-    private static final String pathPrintedOrderItem = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\printOrder.csv";
+public class OrderItemService implements IOrderItemService {
+    private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\orderItem.csv";
+    private static final String pathPrintedOrderItem = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\printOrderItem.csv";
 
 
     public static OrderItemService orderItemService;
 
-    public OrderItemService(){
+    public OrderItemService() {
 
     }
 
-    public static OrderItemService orderItemService(){
+    public static OrderItemService orderItemService() {
         if (orderItemService == null)
             orderItemService = new OrderItemService();
         return orderItemService;
     }
+
     @Override
     public List<OrderItem> findAll() {
         List<OrderItem> orderItems = new ArrayList<>();
@@ -35,7 +36,7 @@ public class OrderItemService implements IOrderItemService{
     public static List<OrderItem> findAllPrintedOrderItem() {
         List<String> stringOrderItems = FileUtils.readFile(pathPrintedOrderItem);
         List<OrderItem> orderItemsList = new ArrayList<>();
-        for (String strOrderItem : stringOrderItems){
+        for (String strOrderItem : stringOrderItems) {
             orderItemsList.add(OrderItem.parseOrderItem(strOrderItem));
         }
         return orderItemsList;
@@ -45,7 +46,7 @@ public class OrderItemService implements IOrderItemService{
     public void add(OrderItem newInstant) {
         List<OrderItem> orderItems = findAll();
         orderItems.add(newInstant);
-        FileUtils.writeFile(PATH,orderItems);
+        FileUtils.writeFile(PATH, orderItems);
     }
 
 
@@ -53,22 +54,22 @@ public class OrderItemService implements IOrderItemService{
     public void removeById(long idOrder) {
         List<OrderItem> orderItemList = findAll();
         List<OrderItem> orderItemListPrinted = findAllPrintedOrderItem();
-        for (int i=0;i<orderItemList.size();i++){
-            if (orderItemList.get(i).getOrderId() == idOrder){
+        for (int i = 0; i < orderItemList.size(); i++) {
+            if (orderItemList.get(i).getOrderId() == idOrder) {
                 orderItemListPrinted.add(orderItemList.get(i));
                 orderItemList.remove(orderItemList.get(i));
                 i--;
             }
         }
-        FileUtils.writeFile(PATH , orderItemList);
-        FileUtils.writeFile(pathPrintedOrderItem , orderItemListPrinted);
+        FileUtils.writeFile(PATH, orderItemList);
+        FileUtils.writeFile(pathPrintedOrderItem, orderItemListPrinted);
     }
 
     @Override
     public void update(OrderItem newInstant) {
         List<OrderItem> orderItems = findAll();
-        for (OrderItem orderItem: orderItems) {
-            if (orderItem.getId() == newInstant.getId()){
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem.getId() == newInstant.getId()) {
                 orderItem.setProductId(newInstant.getProductId());
                 orderItem.setProductName(newInstant.getProductName());
                 orderItem.setPrice(newInstant.getPrice());
@@ -78,8 +79,9 @@ public class OrderItemService implements IOrderItemService{
                 break;
             }
         }
-        FileUtils.writeFile(PATH,orderItems);
+        FileUtils.writeFile(PATH, orderItems);
     }
+
     @Override
     public boolean existsById(long id) {
         return findById(id) != null;
@@ -88,11 +90,12 @@ public class OrderItemService implements IOrderItemService{
     public boolean existsByIdOrder(long id) {
         return findByOrderId(id) != null;
     }
+
     @Override
     public OrderItem findById(long id) {
         List<OrderItem> orderItems = findAll();
-        for (OrderItem orderItem : orderItems){
-            if ( id == orderItem.getId())
+        for (OrderItem orderItem : orderItems) {
+            if (id == orderItem.getId())
                 return orderItem;
         }
         return null;
@@ -116,7 +119,7 @@ public class OrderItemService implements IOrderItemService{
     public double getGrandTotal1(long idOrder) {
         List<OrderItem> orderItemList = findAll();
         double sum = 0;
-        for ( OrderItem item : orderItemList) {
+        for (OrderItem item : orderItemList) {
             if (item.getOrderId() == idOrder) {
                 sum += item.getTotal();
             }
@@ -135,22 +138,21 @@ public class OrderItemService implements IOrderItemService{
         FileUtils.writeFile(PATH, orderItems);
     }
 
-    public OrderItem findOrderItem(long orderID, long productID){
-        for (OrderItem orderItem : findAll()){
+    public OrderItem findOrderItem(long orderID, long productID) {
+        for (OrderItem orderItem : findAll()) {
             if (orderItem.getOrderId() == orderID && orderItem.getProductId() == productID)
                 return orderItem;
         }
         return null;
     }
 
-    public boolean ExistsInOrder(long orderID, long productID){
-        for (OrderItem orderItems : findAll()){
+    public boolean ExistsInOrder(long orderID, long productID) {
+        for (OrderItem orderItems : findAll()) {
             if (orderItems.getOrderId() == orderID && orderItems.getProductId() == productID)
                 return true;
         }
         return false;
     }
-
 
 
 }

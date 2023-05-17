@@ -12,6 +12,7 @@ public class OrderItem {
 
     public OrderItem() {
     }
+
     public OrderItem(long id, long productId, String productName, double price, int quantity, long orderId) {
         this.id = id;
         this.productId = productId;
@@ -80,6 +81,7 @@ public class OrderItem {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
     public double getTotal() {
         return this.total;
     }
@@ -90,17 +92,13 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return        id +
-                "," + productId +
-                "," + productName+
-                "," + price +
-                "," + quantity +
-                "," + total+
-                "," + orderId;
+        return id + "," + productId + "," + productName + "," + price + "," + quantity + "," + total + "," + orderId;
     }
-    public static OrderItem parseOrderItem(String raw){
+
+    public static OrderItem parseOrderItem(String line) {
         OrderItem orderItem = new OrderItem();
-        String [] item = raw.split(",");
+        String[] item = line.split(",");
+        //long id, long productId, String productName, double price, int quantity, double total, long orderId
         orderItem.id = Long.parseLong(item[0]);
         orderItem.productId = Long.parseLong(item[1]);
         orderItem.productName = item[2];

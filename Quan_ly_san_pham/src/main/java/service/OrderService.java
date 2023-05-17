@@ -119,6 +119,7 @@ public class OrderService implements IOrderService {
         }
         return findId;
     }
+
     public List<Order> findByFullName(String value) {
         List<Order> orders = findAllPrintedOrder();
         List<Order> find = new ArrayList<>();
@@ -165,7 +166,7 @@ public class OrderService implements IOrderService {
     public Order findByIdOrder(long orderId) {
         List<Order> orders = findAllPrintedOrder();
         for (Order order : orders) {
-            if ( order.getId()==orderId)
+            if (order.getId() == orderId)
                 return order;
         }
         return null;

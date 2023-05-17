@@ -3,17 +3,17 @@ package model;
 import java.time.Instant;
 
 public class Product {
-    private long idProduct ;
+    private long idProduct;
     private String nameProduct;
     private double price;
-    private int quantity ;
+    private int quantity;
     private Instant createAt;
     private Instant updateAt;
 
     public Product() {
     }
 
-    public Product(long idProduct, String nameProduct, double price, int quantity,Instant createAt , Instant updateAt) {
+    public Product(long idProduct, String nameProduct, double price, int quantity, Instant createAt, Instant updateAt) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.price = price;
@@ -74,25 +74,20 @@ public class Product {
 
     @Override
     public String toString() {
-        return idProduct + ","
-                + nameProduct + ","
-                + price + ","
-                + quantity + ","
-                + createAt+ ","
-                + updateAt;
+        return idProduct + "," + nameProduct + "," + price + "," + quantity + "," + createAt + "," + updateAt;
     }
 
-    public static Product parseProduct(String raw){
+    public static Product parseProduct(String line) {
         Product product = new Product();
         //long idProduct, String nameProduct, double price, int quantity,Instant createAt , Instant updateAt
-        String[] item = raw.split(",");
+        String[] item = line.split(",");
         product.idProduct = Long.parseLong(item[0]);
         product.nameProduct = item[1];
         product.price = Double.parseDouble(item[2]);
         product.quantity = Integer.parseInt(item[3]);
         product.createAt = Instant.parse(item[4]);
         String temp = item[5];
-        if(temp != null && !temp.equals("null"))
+        if (temp != null && !temp.equals("null"))
             product.updateAt = Instant.parse(temp);
         return product;
     }

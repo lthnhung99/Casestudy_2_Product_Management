@@ -10,12 +10,14 @@ public class InstantUtils {
 
     private static final String MONTH_PATTERN_FORMAT = "MM-yyyy";
     private static final String YEAR_PATTERN_FORMAT = "yyyy";
+
     public static String instantToString(Instant instant, String patternFormat) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(patternFormat != null ? patternFormat : PATTERN_FORMAT).withZone(ZoneId.systemDefault());
         return formatter.format(instant);
     }
-    public static String instantToString(Instant instant){
-        return instantToString(instant , null);
+
+    public static String instantToString(Instant instant) {
+        return instantToString(instant, null);
     }
 
     public static String instantToStringDay(Instant instant) {
