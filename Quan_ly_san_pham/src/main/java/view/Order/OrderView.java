@@ -54,7 +54,7 @@ public class OrderView {
             orderService.add(order);
             System.out.println("Tạo đơn thành công!");
         } catch (Exception e) {
-            System.out.println("Nhập sai!!! Vui lòng nhập lại!");
+            System.err.println("Nhập sai!!! Vui lòng nhập lại!");
             e.printStackTrace();
         }
     }
@@ -65,9 +65,9 @@ public class OrderView {
         boolean isTrue = true;
         do {
             try {
-                if (user.getRole() == Role.ADMIN)
+                if (user.getRole() == ERole.ADMIN)
                     showOrder1(orderService.findAll(), Select.UPDATE);
-                if (user.getRole() == Role.USER)
+                if (user.getRole() == ERole.USER)
                     showOrder1(orderService.findIdUserByOrder(userId), Select.UPDATE);
                 long id = inputId(Select.UPDATE);
                 Order order = orderService.findById(id);
@@ -95,14 +95,14 @@ public class OrderView {
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                        System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
                         break;
                 }
                 // isTrue = case4:
                 isTrue = option != 6 && AppUtils.isRetry(Select.UPDATE);
 
             } catch (Exception e) {
-                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                System.err.println("Sai cú pháp. Vui lòng nhập lại!");
             }
         } while (isTrue);
 
@@ -134,7 +134,7 @@ public class OrderView {
                             isTrue = false;
                             break;
                         default:
-                            System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                            System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
                     }
                 } else {
                     System.out.println("Giỏ hàng trống!");
@@ -149,13 +149,13 @@ public class OrderView {
                         case "q":
                             isTrue = false;
                         default:
-                            System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                            System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
                             isTrue = true;
                     }
                     isTrue = false;
                 }
             } catch (Exception e) {
-                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                System.err.println("Sai cú pháp. Vui lòng nhập lại!");
             }
         } while (isTrue);
     }
@@ -197,7 +197,7 @@ public class OrderView {
             if (FindId) {
                 isTrue = false;
             } else {
-                System.out.println("Không tìm thấy, vui lòng nhập lại!");
+                System.err.println("Không tìm thấy, vui lòng nhập lại!");
             }
         } while (isTrue);
         return id;
@@ -304,7 +304,7 @@ public class OrderView {
 
             orderItemView.showAllItemOfOrder(choose);
         } else {
-            System.out.println("Danh sách trống. Hãy thêm đơn hàng.");
+            System.err.println("Danh sách trống. Hãy thêm đơn hàng.");
             addToEmptyList(userId);
         }
     }
@@ -321,7 +321,7 @@ public class OrderView {
                     flag = false;
                     break;
                 default:
-                    System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                    System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
                     flag = true;
             }
         } while (flag);

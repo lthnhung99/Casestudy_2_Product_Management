@@ -33,7 +33,7 @@ public class OrderItemView {
             System.out.println("Nhập ID sản phẩm muốn mua");
             int idPro = Integer.parseInt(scanner.nextLine());
             while (!productService.existsById(idPro)) {
-                System.out.println("ID không tồn tại!");
+                System.err.println("ID không tồn tại!");
                 System.out.println("Nhập ID sản phẩm");
                 idPro = scanner.nextInt();
             }
@@ -44,10 +44,10 @@ public class OrderItemView {
             do {
                 quantity = AppUtils.retryParseInt();
                 if (quantity < 0)
-                    System.out.println("(Số lượng phải lớn hơn 0)");
+                    System.err.println("(Số lượng phải lớn hơn 0)");
             } while (quantity < 0);
             while (!checkQuantity(product, quantity)) {
-                System.out.println("Nhập sai số lượng!!! Vui lòng nhập lại!");
+                System.err.println("Nhập sai số lượng!!! Vui lòng nhập lại!");
                 System.out.println("Nhập số lượng");
                 quantity = scanner.nextInt();
             }
@@ -83,7 +83,7 @@ public class OrderItemView {
                         checkOrderItem = false;
                         break;
                     default:
-                        System.out.println("Chọn sai chức năng. Kiểm tra lại!");
+                        System.err.println("Chọn sai chức năng. Kiểm tra lại!");
                         checkContinue = true;
                         break;
                 }
@@ -117,10 +117,10 @@ public class OrderItemView {
                         isTrue = false;
                         break;
                     default :
-                        System.out.println("Lựa chọn sai, vui lòng nhập lại!");
+                        System.err.println("Lựa chọn sai, vui lòng nhập lại!");
                 }
             } catch (Exception e) {
-                System.out.println("Lỗi cú pháp. Vui lòng nhập lại!");
+                System.err.println("Lỗi cú pháp. Vui lòng nhập lại!");
             }
         } while (isTrue);
     }
@@ -156,10 +156,10 @@ public class OrderItemView {
                         System.out.println("Thoát khỏi chương trình");
                         System.exit(0);
                     default :
-                        System.out.println("Lựa chọn sai, vui lòng nhập lại!");
+                        System.err.println("Lựa chọn sai, vui lòng nhập lại!");
                 }
             } catch (Exception e) {
-                System.out.println("Lỗi cú pháp. Vui lòng nhập lại!");
+                System.err.println("Lỗi cú pháp. Vui lòng nhập lại!");
             }
         } while (isTrue);
     }
@@ -180,7 +180,7 @@ public class OrderItemView {
                 orderItemService.update(orderItem);
                 flag = false;
             } catch (Exception e) {
-                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                System.err.println("Sai cú pháp. Vui lòng nhập lại!");
             }
         } while (flag);
     }
@@ -201,7 +201,7 @@ public class OrderItemView {
                 showOrderItem2(orderItems);
                 flag = false;
             } catch (Exception e) {
-                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                System.err.println("Sai cú pháp. Vui lòng nhập lại!");
             }
         } while (flag);
     }
@@ -238,10 +238,10 @@ public class OrderItemView {
             if (FindId) {
                 Product product = productService.findById(id);
                 if (product.getQuantity() == 0)
-                    System.out.println("Số lượng sản phẩm đã hết, vui lòng chọn sản phẩm khác!");
+                    System.err.println("Số lượng sản phẩm đã hết, vui lòng chọn sản phẩm khác!");
                 else flag = false;
             } else {
-                System.out.println("Không tìm thấy! Vui lòng nhập lại");
+                System.err.println("Không tìm thấy! Vui lòng nhập lại");
             }
         } while (flag);
         return id;
@@ -257,10 +257,10 @@ public class OrderItemView {
         do {
             quantity = AppUtils.retryParseInt();
             if (quantity < 0) {
-                System.out.println("Số lượng sản phẩm không thể âm, vui lòng nhập lại!");
+                System.err.println("Số lượng sản phẩm không thể âm, vui lòng nhập lại!");
             }
             if (quantity > product.getQuantity()) {
-                System.out.printf("Số lượng '%s' vượt quá '%s' sản phẩm hiện có! Vui lòng nhập lại!\n", product.getNameProduct(), product.getQuantity());
+                System.err.printf("Số lượng '%s' vượt quá '%s' sản phẩm hiện có! Vui lòng nhập lại!\n", product.getNameProduct(), product.getQuantity());
             }
 
         } while (quantity < 0 || quantity > product.getQuantity());
@@ -352,7 +352,7 @@ public class OrderItemView {
                     flag = false;
                     break;
                 default:
-                    System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                    System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
             }
         } while (flag);
     }
@@ -381,7 +381,7 @@ public class OrderItemView {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Lựa chọn sai. Vui lòng nhập lại!");
+                    System.err.println("Lựa chọn sai. Vui lòng nhập lại!");
                     break;
             }
         } while (true);
@@ -401,7 +401,7 @@ public class OrderItemView {
                     checkContinue1 = false;
                     break;
                 default:
-                    System.out.println("Chọn sai chức năng. Kiểm tra lại!");
+                    System.err.println("Chọn sai chức năng. Kiểm tra lại!");
                     checkContinue1 = true;
                     break;
             }
@@ -431,7 +431,7 @@ public class OrderItemView {
             if (FindId) {
                 flag = true;
             } else {
-                System.out.println("Không tìm thấy! Vui lòng nhập lại");
+                System.err.println("Không tìm thấy! Vui lòng nhập lại");
             }
         } while (!flag);
         return id;
@@ -454,7 +454,7 @@ public class OrderItemView {
             if (FindId) {
                 flag = true;
             } else {
-                System.out.println("Không tìm thấy! Vui lòng nhập lại");
+                System.err.println("Không tìm thấy! Vui lòng nhập lại");
             }
         } while (!flag);
         return id;

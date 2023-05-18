@@ -1,13 +1,13 @@
 package model;
 
-public enum Role {
+public enum ERole {
 
     ADMIN("ADMIN"),
     USER("USER");
 
     private String value;
 
-    Role(String value) {
+    ERole(String value) {
         this.value = value;
     }
 
@@ -19,9 +19,9 @@ public enum Role {
         this.value = value;
     }
 
-    public static Role parseRole(String value) {
-        Role[] item = values();
-        for (Role role : item) {
+    public static ERole parseRole(String value) {
+        ERole[] item = values();
+        for (ERole role : item) {
             if (role.value.equalsIgnoreCase(value)) {
                 return role;
             }

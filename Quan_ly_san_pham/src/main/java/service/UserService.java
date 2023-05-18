@@ -1,6 +1,6 @@
 package service;
 
-import model.Role;
+import model.ERole;
 import model.User;
 import utils.FileUtils;
 
@@ -56,9 +56,9 @@ public class UserService implements IUserService {
                 String fullName = newUser.getFullName();
                 if (fullName != null && !fullName.isEmpty())
                     user.setFullName(fullName);
-                String phone = newUser.getMobile();
+                String phone = newUser.getPhone();
                 if (phone != null && !phone.isEmpty())
-                    user.setMobile(newUser.getMobile());
+                    user.setPhone(newUser.getPhone());
                 String address = newUser.getAddress();
                 if (address != null && !address.isEmpty())
                     user.setAddress(newUser.getAddress());
@@ -92,11 +92,11 @@ public class UserService implements IUserService {
                 return user;
             }
             if (user.getUserName().equals(userName) && user.getPassWord().equals(passWord)
-                    && user.getRole().equals(Role.ADMIN)) {
+                    && user.getRole().equals(ERole.ADMIN)) {
                 return user;
             }
             if (user.getUserName().equals(userName) && user.getPassWord().equals(passWord)
-                    && user.getRole().equals(Role.USER)) {
+                    && user.getRole().equals(ERole.USER)) {
                 return user;
             }
         }
@@ -125,7 +125,7 @@ public class UserService implements IUserService {
     public boolean existByPhone(String phone) {
         List<User> users = findAll();
         for (User user : users) {
-            if (user.getMobile().equals(phone))
+            if (user.getPhone().equals(phone))
                 return true;
         }
         return false;

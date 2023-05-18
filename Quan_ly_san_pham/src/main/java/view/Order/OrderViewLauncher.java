@@ -40,7 +40,7 @@ public class OrderViewLauncher {
                         MenuUserView.login();
                         break;
                     default:
-                        System.out.println("Nhập sai! Vui lòng nhập lại!");
+                        System.err.println("Nhập sai! Vui lòng nhập lại!");
                 }
             } catch (Exception e) {
             }

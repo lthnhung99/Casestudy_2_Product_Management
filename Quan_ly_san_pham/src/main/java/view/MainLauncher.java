@@ -37,11 +37,11 @@ public class MainLauncher {
                         MenuUserView.login();
                         break;
                     default:
-                        System.out.println("Nhập sai! Vui lòng nhập lại! ");
+                        System.err.println("Nhập sai! Vui lòng nhập lại! ");
                         break;
                 }
             }catch (Exception e) {
-                System.out.println("Error!");
+                System.err.println("Error!");
             }
         }while (true);
     }

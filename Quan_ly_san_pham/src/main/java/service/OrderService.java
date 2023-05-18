@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OrderService implements IOrderService {
     private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\order.csv";
-    private static final String pathPrintedOrder = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\printOrder.csv";
+    private static final String pathPrintedOrder = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\print_order.csv";
 
     public static OrderService orderService;
 

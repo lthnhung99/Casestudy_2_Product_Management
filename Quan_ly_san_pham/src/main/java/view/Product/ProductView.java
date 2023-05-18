@@ -48,7 +48,6 @@ public class ProductView {
     public void updateProduct(){
         show(productService.findAll());
         System.out.println("Nhập ID cần sửa :");
-        System.out.print("➤ ");
         try {
             int id = Integer.parseInt(sc.nextLine());
             if (productService.existsById(id)) {
@@ -114,7 +113,7 @@ public class ProductView {
     private int inputQuantity(Select choose) {
         switch (choose){
             case ADD :
-                System.out.println("Nhập số lượng sp :");
+                System.out.println("Nhập số lượng sản phẩm :");
                 break;
             case UPDATE:
                 System.out.println("Nhập số lượng bạn muốn sửa:");
@@ -132,7 +131,6 @@ public class ProductView {
     private void inputPrice (int id){
         Product product = productService.findById(id);
         System.out.println("Nhập giá:");
-        System.out.println("➠");
         double price = Double.parseDouble(sc.nextLine());
         product.setPrice(price);
         productService.update(product);
@@ -162,7 +160,7 @@ public class ProductView {
     private double inputPrice(Select choose) {
         switch (choose){
             case ADD:
-                System.out.println("Nhập giá sp : ");
+                System.out.println("Nhập giá sa phẩm : ");
                 break;
             case UPDATE:
                 System.out.println("Nhập giá bạn muốn sửa: ");

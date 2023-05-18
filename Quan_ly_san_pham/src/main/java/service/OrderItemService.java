@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderItemService implements IOrderItemService {
-    private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\orderItem.csv";
-    private static final String pathPrintedOrderItem = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\printOrderItem.csv";
+    private static final String PATH = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\order_item.csv";
+    private static final String pathPrintedOrderItem = "D:\\Casestudy_2_Product_Management\\Quan_ly_san_pham\\src\\main\\java\\data\\print_order_item.csv";
 
 
     public static OrderItemService orderItemService;

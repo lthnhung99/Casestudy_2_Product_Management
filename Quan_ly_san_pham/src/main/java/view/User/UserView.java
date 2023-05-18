@@ -1,6 +1,6 @@
 package view.User;
 
-import model.Role;
+import model.ERole;
 import model.User;
 import service.UserService;
 import utils.AppUtils;
@@ -28,17 +28,17 @@ public class UserView {
                 String username = inputUserName();
                 String password = inputPassword();
                 String fullName = inputFullName(Select.ADD);
-                String mobile = inputMobile(Select.ADD);
+                String phone = inputPhone(Select.ADD);
                 String address = inputAddress(Select.ADD);
                 String email = inputEmail(Select.ADD);
-                User user = new User(idUser, username, password, fullName, mobile, email, address, Role.USER);
-                user.setRole(Role.USER);
+                User user = new User(idUser, username, password, fullName, phone, email, address, ERole.USER);
+                user.setRole(ERole.USER);
                 userService.add(user);
                 System.out.println("Đã thêm người dùng thành công!");
                 showUsers(Select.SHOW);
 
             }catch (Exception e){
-                System.out.println("Nhập sai . Vui lòng nhập lại!!!");
+                System.err.println("Nhập sai. Vui lòng nhập lại!!!");
             }
         }while (AppUtils.isRetry(Select.ADD));
     }
@@ -71,8 +71,8 @@ public class UserView {
                         System.out.println("Đã đổi tên thành công!");
                         break;
                     case 2:
-                        String phone = inputMobile(Select.UPDATE);
-                        newUser.setMobile(phone);
+                        String phone = inputPhone(Select.UPDATE);
+                        newUser.setPhone(phone);
                         userService.update(newUser);
                         System.out.println("Đổi số điện thoại thành công!");
                         break;
@@ -210,7 +210,7 @@ public class UserView {
                 } while (address.trim().isEmpty());
                 return address;
             case UPDATE:
-                System.out.println("Nhập địa chỉ muốn đổi (vd: Huế)");
+                System.out.println("Nhập địa chỉ muốn đổi");
                 do {
                     address = sc.nextLine();
                     if (address.trim().isEmpty()) {
@@ -225,7 +225,7 @@ public class UserView {
     }
 
 
-    public String inputMobile(Select choose) {
+    public String inputPhone(Select choose) {
         switch (choose) {
             case ADD:
                 System.out.println("Nhập số điện thoại (10 số, bắt đầu số 0)");
@@ -234,21 +234,21 @@ public class UserView {
                 System.out.println("Nhập số điện thoại mà bạn muốn đổi lại: ");
                 break;
         }
-        String mobile;
+        String phone;
         do {
-            mobile = sc.nextLine();
-            if (!ValidateUtils.isPhoneValid(mobile)) {
-                System.out.println("Số " + mobile + " không đúng định dạng! Nhập lại!" + "Gồm 10 số và bắt đầu bằng số 0");
+            phone = sc.nextLine();
+            if (!ValidateUtils.isPhoneValid(phone)) {
+                System.out.println("Số " + phone + " không đúng định dạng! Nhập lại!" + "Gồm 10 số và bắt đầu bằng số 0");
                 System.out.println("Nhập số điện thoại");
                 continue;
             }
-            if (userService.existByPhone(mobile)) {
+            if (userService.existByPhone(phone)) {
                 System.out.println("Số này đã tồn tại. Mời bạn nhập lại!");
                 continue;
             }
             break;
         } while (true);
-        return mobile;
+        return phone;
     }
 
     public String inputFullName(Select choose) {
@@ -263,7 +263,7 @@ public class UserView {
 
         String fullName;
         while (!ValidateUtils.isFullNameValid(fullName = sc.nextLine())) {
-            System.out.println("Tên " + fullName + " không đúng định dạng." + " Viết hoa chữ cái đầu" + "Không bao gồm số, không thêm ký tự đặc biệt" );
+            System.out.println("Tên " + fullName + " không đúng định dạng." + " Viết hoa chữ cái đầu, hơn 10 ký tự");
             System.out.println("Nhập tên");
         }
         return fullName;
@@ -283,7 +283,7 @@ public class UserView {
         String username;
         do {
             if (!ValidateUtils.isUserNameValid(username = AppUtils.retryString("Username"))) {
-                System.out.println("Không đúng định dạng. Vui lòng kiểm tra và nhập lại!");
+                System.out.println("Không đúng định dạng. Vui lòng nhập lại!");
                 continue;
             }
             if (userService.existByUserName(username)) {
@@ -304,7 +304,7 @@ public class UserView {
             System.out.printf("%-15d %-22s %-15s %-22s %-18s %-15s %-20s %-20s\n",
                     user.getIdUser(),
                     user.getFullName(),
-                    user.getMobile(),
+                    user.getPhone(),
                     user.getEmail(),
                     user.getAddress(),
                     user.getRole(),

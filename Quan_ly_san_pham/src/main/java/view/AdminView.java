@@ -1,6 +1,6 @@
 package view;
 
-import model.Role;
+import model.ERole;
 import model.User;
 import service.IUserService;
 import service.UserService;
@@ -30,16 +30,16 @@ public class AdminView {
             String password = AppUtils.retryString("Mật khẩu");
             User user = userService.adminLogin(username, password);
             if (user == null) {
-                System.out.println("Tài khoản không hợp lệ!");
+                System.err.println("Tài khoản không hợp lệ!");
                 isRetry = isRetry();
-            } else if (user.getRole() == Role.ADMIN) {
+            } else if (user.getRole() == ERole.ADMIN) {
                 System.out.println("Đăng nhập thành công");
                 System.out.println("Chào mừng Admin " + user.getFullName());
                 idOnlineUser = user.getIdUser();
                 MainLauncher.menuOption();
-            } else if (user.getRole() == Role.USER) {
+            } else if (user.getRole() == ERole.USER) {
                 System.out.println("Đăng nhập thành công");
-                System.out.println("Chào mừng" + user.getFullName());
+                System.out.println("Chào mừng " + user.getFullName());
                 idOnlineUser = user.getIdUser();
                 MenuUserView.runOderUser();
             }
@@ -57,11 +57,11 @@ public class AdminView {
                     case "t":
                         AppUtils.exit();
                     default:
-                        System.out.println("Nhập chức năng không đúng! Vui lòng nhập lại!");
+                        System.err.println("Nhập chức năng không đúng! Vui lòng nhập lại!");
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Nhập sai! Vui lòng nhập lại!");
+                System.err.println("Nhập sai! Vui lòng nhập lại!");
                 e.printStackTrace();
             }
         } while (true);

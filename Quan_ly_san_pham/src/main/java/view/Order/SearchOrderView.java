@@ -1,7 +1,7 @@
 package view.Order;
 
 import model.Order;
-import model.Role;
+import model.ERole;
 import model.User;
 import service.OrderService;
 import service.UserService;
@@ -52,11 +52,11 @@ public class SearchOrderView {
                         isTrue = false;
                         break;
                     default:
-                        System.out.println("Nhập sai! Vui lòng nhập lại! ");
+                        System.err.println("Nhập sai! Vui lòng nhập lại! ");
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Error!");
+                System.err.println("Error!");
             }
         } while (isTrue);
     }
@@ -77,10 +77,10 @@ public class SearchOrderView {
 
     public void findByOrderId(long userId) {
         User user = userService.findById(userId);
-        if (user.getRole() == Role.ADMIN) {
+        if (user.getRole() == ERole.ADMIN) {
             orderView.showOrder1(orderService.findAllPrintedOrder(), Select.SEARCH);
         }
-        if (user.getRole() == Role.USER) {
+        if (user.getRole() == ERole.USER) {
             orderView.showOrder1(orderService.findUserById(userId), Select.SEARCH);
         }
         System.out.println(" TÌM KIẾM THEO ID");
@@ -98,10 +98,10 @@ public class SearchOrderView {
 
     private void findByFullName(long userId) {
         User user = userService.findById(userId);
-        if (user.getRole() == Role.ADMIN) {
+        if (user.getRole() == ERole.ADMIN) {
             orderView.showOrder1(orderService.findAllPrintedOrder(), Select.SEARCH);
         }
-        if (user.getRole() == Role.USER) {
+        if (user.getRole() == ERole.USER) {
             orderView.showOrder1(orderService.findUserById(userId), Select.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO KHÁCH HÀNG");
@@ -117,10 +117,10 @@ public class SearchOrderView {
 
     private void findByPhone(long userId) {
         User user = userService.findById(userId);
-        if (user.getRole() == Role.ADMIN) {
+        if (user.getRole() == ERole.ADMIN) {
             orderView.showOrder1(orderService.findAllPrintedOrder(), Select.SEARCH);
         }
-        if (user.getRole() == Role.USER) {
+        if (user.getRole() == ERole.USER) {
             orderView.showOrder1(orderService.findUserById(userId), Select.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO SỐ ĐIỆN THOẠI");
@@ -136,10 +136,10 @@ public class SearchOrderView {
 
     private void findByAddress(long userId) {
         User user = userService.findById(userId);
-        if (user.getRole() == Role.ADMIN) {
+        if (user.getRole() == ERole.ADMIN) {
             orderView.showOrder1(orderService.findAllPrintedOrder(), Select.SEARCH);
         }
-        if (user.getRole() == Role.USER) {
+        if (user.getRole() == ERole.USER) {
             orderView.showOrder1(orderService.findUserById(userId), Select.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO ĐỊA CHỈ");

@@ -7,10 +7,10 @@ public class User {
     private String userName;
     private String passWord;
     private String fullName;
-    private String mobile;
+    private String phone;
     private String email;
     private String address;
-    private Role role;
+    private ERole role;
     private Instant createAt;
     private Instant updateAt;
 
@@ -18,12 +18,12 @@ public class User {
 
     }
 
-    public User(long idUser, String userName, String passWord, String fullName, String mobile, String email, String address, Role role, Instant createAt, Instant updateAt) {
+    public User(long idUser, String userName, String passWord, String fullName, String phone, String email, String address, ERole role, Instant createAt, Instant updateAt) {
         this.idUser = idUser;
         this.userName = userName;
         this.passWord = passWord;
         this.fullName = fullName;
-        this.mobile = mobile;
+        this.phone = phone;
         this.email = email;
         this.address = address;
         this.role = role;
@@ -31,12 +31,12 @@ public class User {
         this.updateAt = updateAt;
     }
 
-    public User(long idUser, String username, String password, String fullName, String mobile, String email, String address, Role role) {
+    public User(long idUser, String username, String password, String fullName, String phone, String email, String address, ERole role) {
         this.idUser = idUser;
         this.userName = username;
         this.passWord = password;
         this.fullName = fullName;
-        this.mobile = mobile;
+        this.phone = phone;
         this.email = email;
         this.address = address;
         this.role = role;
@@ -75,12 +75,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -99,11 +99,11 @@ public class User {
         this.address = address;
     }
 
-    public Role getRole() {
+    public ERole getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(ERole role) {
         this.role = role;
     }
 
@@ -125,7 +125,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,", idUser, userName, passWord, fullName, mobile, email, address, role, createAt, updateAt);
+        return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,", idUser, userName, passWord, fullName, phone, email, address, role, createAt, updateAt);
     }
 
     public static User parseUser(String line) {
@@ -135,10 +135,10 @@ public class User {
         user.userName = item[1];
         user.passWord = item[2];
         user.fullName = item[3];
-        user.mobile = item[4];
+        user.phone = item[4];
         user.email = item[5];
         user.address = item[6];
-        user.role = Role.parseRole(item[7]);
+        user.role = ERole.parseRole(item[7]);
         user.createAt = Instant.parse(item[8]);
         String temp = item[9];
         if (temp != null && !temp.equals("null"))
