@@ -4,7 +4,7 @@ import model.Product;
 import service.ProductService;
 import utils.AppUtils;
 import utils.InstantUtils;
-import view.Select;
+import view.ESelect;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
@@ -24,25 +24,25 @@ public class ProductView {
     public void addProduct(){
         do {
             long idProduct =System.currentTimeMillis()%100000;
-            String name = inputNameProduct(Select.ADD);
-            double price = inputPrice(Select.ADD);
-            int quantity = inputQuantity(Select.ADD);
+            String name = inputNameProduct(ESelect.ADD);
+            double price = inputPrice(ESelect.ADD);
+            int quantity = inputQuantity(ESelect.ADD);
             Instant createAt = Instant.now();
             Instant updateAt = Instant.now();
             Product product = new Product(idProduct ,name ,price ,quantity ,createAt , updateAt);
             productService.add(product);
             System.out.println("Đã thêm sản phẩm thành công!");
-            showProduct(Select.ADD);
-        }while (AppUtils.isRetry(Select.ADD));
+            showProduct(ESelect.ADD);
+        }while (AppUtils.isRetry(ESelect.ADD));
     }
 
     public void removeProduct(){
-        showProduct(Select.SHOW);
+        showProduct(ESelect.SHOW);
         System.out.println("Nhập ID muốn xóa:");
         long id = Long.parseLong(sc.nextLine());
         productService.removeById(id);
         System.out.println("Đã xóa sp.");
-        showProduct(Select.REMOVE);
+        showProduct(ESelect.REMOVE);
     }
 
     public void updateProduct(){
@@ -110,7 +110,7 @@ public class ProductView {
     }
 
 
-    private int inputQuantity(Select choose) {
+    private int inputQuantity(ESelect choose) {
         switch (choose){
             case ADD :
                 System.out.println("Nhập số lượng sản phẩm :");
@@ -134,7 +134,7 @@ public class ProductView {
         double price = Double.parseDouble(sc.nextLine());
         product.setPrice(price);
         productService.update(product);
-        showProduct(Select.UPDATE);
+        showProduct(ESelect.UPDATE);
         System.out.println("Giá đã được thay đổi");
     }
     private void inputQuantity (int id){
@@ -143,7 +143,7 @@ public class ProductView {
         int quantity = Integer.parseInt(sc.nextLine());
         product.setQuantity(quantity);
         productService.update(product);
-        showProduct(Select.UPDATE);
+        showProduct(ESelect.UPDATE);
         System.out.println("Số lượng đã được thay đổi");
     }
     private void inputName (int id){
@@ -152,15 +152,15 @@ public class ProductView {
         String nameProduct = sc.nextLine();
         product.setNameProduct(nameProduct);
         productService.update(product);
-        showProduct(Select.UPDATE);
+        showProduct(ESelect.UPDATE);
         System.out.println("Tên sản phẩm đã được thay đổi");
     }
 
 
-    private double inputPrice(Select choose) {
+    private double inputPrice(ESelect choose) {
         switch (choose){
             case ADD:
-                System.out.println("Nhập giá sa phẩm : ");
+                System.out.println("Nhập giá sản phẩm : ");
                 break;
             case UPDATE:
                 System.out.println("Nhập giá bạn muốn sửa: ");
@@ -176,7 +176,7 @@ public class ProductView {
         return price;
     }
 
-    private String inputNameProduct(Select choose) {
+    private String inputNameProduct(ESelect choose) {
         String nameProduct = "";
         switch (choose) {
             case ADD:
@@ -192,7 +192,7 @@ public class ProductView {
         return nameProduct;
     }
 
-    public void showProduct(Select choose) {
+    public void showProduct(ESelect choose) {
         List<Product> productList = productService.findAll();
         System.out.println("DANH SÁCH SẢN PHẨM");
         System.out.printf("%-25s %-25s %-15s %-20s\n", "ID", "Tên ", "Giá", "Số lượng");
@@ -205,7 +205,7 @@ public class ProductView {
         }
     }
 
-    public void showProduct1(List<Product>products, Select choose) {
+    public void showProduct1(List<Product>products, ESelect choose) {
 //        List<Product> productList = productService.findAll();
         System.out.println("DANH SÁCH SẢN PHẨM");
         System.out.printf("%-25s %-25s %-15s %-20s %-20s %-20s\n", "ID", "Tên ", "Giá", "Số lượng","Thời gian " ,"Thời gian cập nhật");
@@ -219,7 +219,7 @@ public class ProductView {
                     product.getUpdateAt() == null ? "" : InstantUtils.instantToString(product.getUpdateAt())
             );
         }
-        if (choose != Select.UPDATE && choose != Select.REMOVE && choose != Select.SEARCH) {
+        if (choose != ESelect.UPDATE && choose != ESelect.REMOVE && choose != ESelect.SEARCH) {
         }
     }
 

@@ -1,6 +1,6 @@
 package view.Product;
 
-import view.Select;
+import view.ESelect;
 
 import java.util.Scanner;
 
@@ -61,7 +61,7 @@ public class MenuProductView {
                         SearchProductView.search();
                         break;
                     case 4:
-                        productView.showProduct(Select.SHOW);
+                        productView.showProduct(ESelect.SHOW);
                         runProduct();
                         break;
                     case 5:

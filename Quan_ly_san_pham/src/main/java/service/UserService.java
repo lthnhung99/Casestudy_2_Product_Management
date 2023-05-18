@@ -62,6 +62,9 @@ public class UserService implements IUserService {
                 String address = newUser.getAddress();
                 if (address != null && !address.isEmpty())
                     user.setAddress(newUser.getAddress());
+                String email = newUser.getEmail();
+                if (email!=null&&!email.isEmpty())
+                    user.setEmail(newUser.getEmail());
                 user.setUpdateAt(Instant.now());
                 FileUtils.writeFile(PATH, users);
                 break;

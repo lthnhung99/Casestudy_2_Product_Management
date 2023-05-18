@@ -1,6 +1,6 @@
 package utils;
 
-import view.Select;
+import view.ESelect;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -58,7 +58,7 @@ public class AppUtils {
         return result;
     }
 
-    public static boolean isRetry(Select choose) {
+    public static boolean isRetry(ESelect choose) {
         do {
             switch (choose) {
                 case ADD:

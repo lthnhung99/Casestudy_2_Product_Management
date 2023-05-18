@@ -1,5 +1,5 @@
 package view;
 
-public enum Select {
+public enum ESelect {
     ADD , REMOVE , UPDATE , SHOW , SEARCH , PRINT
 }

@@ -7,7 +7,7 @@ import utils.InstantUtils;
 import utils.ValidateUtils;
 import view.AdminView;
 import view.Product.ProductView;
-import view.Select;
+import view.ESelect;
 
 import java.time.Instant;
 import java.util.List;
@@ -38,15 +38,15 @@ public class OrderView {
             long orderId = System.currentTimeMillis() % 100000;
             Instant creatAt = Instant.now();
             ProductView productView = new ProductView();
-            productView.showProduct(Select.ADD);
+            productView.showProduct(ESelect.ADD);
             order.setCreatAt(creatAt);
             order.setIdUser(idUser);
             order.setId(orderId);
             orderItemView.addOrderItem(orderId);
             showOrderItemsByOrder(order);
-            String name = inputName(Select.ADD);
-            String phone = inputPhone(Select.ADD);
-            String address = inputAddress(Select.ADD);
+            String name = inputName(ESelect.ADD);
+            String phone = inputPhone(ESelect.ADD);
+            String address = inputAddress(ESelect.ADD);
             order.setName(name);
             order.setPhone(phone);
             order.setAddress(address);
@@ -66,10 +66,10 @@ public class OrderView {
         do {
             try {
                 if (user.getRole() == ERole.ADMIN)
-                    showOrder1(orderService.findAll(), Select.UPDATE);
+                    showOrder1(orderService.findAll(), ESelect.UPDATE);
                 if (user.getRole() == ERole.USER)
-                    showOrder1(orderService.findIdUserByOrder(userId), Select.UPDATE);
-                long id = inputId(Select.UPDATE);
+                    showOrder1(orderService.findIdUserByOrder(userId), ESelect.UPDATE);
+                long id = inputId(ESelect.UPDATE);
                 Order order = orderService.findById(id);
                 MenuOrder.menuUpdateOrder();
                 option = Integer.parseInt(scanner.nextLine());
@@ -99,7 +99,7 @@ public class OrderView {
                         break;
                 }
                 // isTrue = case4:
-                isTrue = option != 6 && AppUtils.isRetry(Select.UPDATE);
+                isTrue = option != 6 && AppUtils.isRetry(ESelect.UPDATE);
 
             } catch (Exception e) {
                 System.err.println("Sai cú pháp. Vui lòng nhập lại!");
@@ -114,13 +114,13 @@ public class OrderView {
         do {
             try {
                 if (orderItemService.findByOrderId(order.getId()) != null) {
-                    orderItemView.showOrderItem1(orderItemService.findByOrderId(order.getId()), Select.UPDATE);
+                    orderItemView.showOrderItem1(orderItemService.findByOrderId(order.getId()), ESelect.UPDATE);
                     System.out.println(" Chọn 't' để thêm sản phẩm \t|\t  'y' để sửa sản phẩm \t|\t 'x' để xóa sản phẩm trong giỏ hàng ");
                     choose = scanner.nextLine();
                     switch (choose) {
                         case "t":
                             ProductView productView = new ProductView();
-                            productView.showProduct(Select.SHOW);
+                            productView.showProduct(ESelect.SHOW);
                             orderItemView.addOrderItem(order.getId());
                             showOrderItemsByOrder(order);
                             isTrue = false;
@@ -143,7 +143,7 @@ public class OrderView {
                     switch (choose) {
                         case "y":
                             ProductView productView = new ProductView();
-                            productView.showProduct(Select.SHOW);
+                            productView.showProduct(ESelect.SHOW);
                             orderItemView.addOrderItem(order.getId());
                             break;
                         case "q":
@@ -161,27 +161,27 @@ public class OrderView {
     }
 
     private void updateAddress(Order order) {
-        String address = inputAddress(Select.UPDATE);
+        String address = inputAddress(ESelect.UPDATE);
         order.setAddress(address);
         orderService.update(order);
         System.out.println("Cập nhật địa chỉ thành công!");
     }
 
     private void updatePhone(Order order) {
-        String phone = inputPhone(Select.UPDATE);
+        String phone = inputPhone(ESelect.UPDATE);
         order.setPhone(phone);
         orderService.update(order);
         System.out.println("Cập nhật số điện thoại thành công!");
     }
 
     private void updateFullName(Order order) {
-        String fullName = inputName(Select.UPDATE);
+        String fullName = inputName(ESelect.UPDATE);
         order.setName(fullName);
         orderService.update(order);
         System.out.println("Cập nhật tên khách hàng thành công!");
     }
 
-    private long inputId(Select choose) {
+    private long inputId(ESelect choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID đơn hàng: ");
@@ -209,7 +209,7 @@ public class OrderView {
         orderItemView.showOrderItem(order);
     }
 
-    private String inputAddress(Select choose) {
+    private String inputAddress(ESelect choose) {
         String address;
         do {
             System.out.println("Nhập địa chỉ");
@@ -223,7 +223,7 @@ public class OrderView {
 
     }
 
-    private String inputPhone(Select choose) {
+    private String inputPhone(ESelect choose) {
         System.out.println("Nhập số điện thoại(Gồm 10 số, bắt đầu là số 0)");
         String phone = scanner.nextLine();
         while (!ValidateUtils.isPhoneValid(phone)) {
@@ -233,7 +233,7 @@ public class OrderView {
         return phone;
     }
 
-    private String inputName(Select choose) {
+    private String inputName(ESelect choose) {
         System.out.println("Nhập chức năng:");
         System.out.println("Nhập họ và tên(Tên phải viết hoa chữ cái đầu, chứa hơn 10 ký tự)");
 
@@ -246,10 +246,10 @@ public class OrderView {
         return name;
     }
 
-    public void showOrder(Select choose) {
+    public void showOrder(ESelect choose) {
         List<Order> orders = orderService.findAll();
         System.out.println(" DANH SÁCH ĐƠN HÀNG ");
-        System.out.printf("| %-5s%-9s | %-8s%-18s | %-6s%-10s | %-5s%-24s  | %-7s%-15s | %-11s%-24s | %-2s%-20s |\n",
+        System.out.printf("| %-5s%-9s | %-5s%-15s | %-6s%-10s | %-5s%-15s  | %-7s%-15s | %-11s%-15s | %-2s%-15s |\n",
                 "", "ID",
                 "", "KHÁCH HÀNG ",
                 "", "SĐT",
@@ -259,7 +259,7 @@ public class OrderView {
                 "", "THỜI GIAN TẠO"
         );
         for (Order order : orders) {
-            System.out.printf("| %-2s%-12s | %-3s%-23s | %-3s%-13s | %-5s%-24s  | %-4s%-18s | %-2s%-33s | %-2s%-20s |\n",
+            System.out.printf("| %-5s%-9s | %-5s%-15s | %-6s%-10s | %-5s%-15s  | %-7s%-15s | %-11s%-15s | %-2s%-15s |",
                     "", order.getId(),
                     "", order.getName(),
                     "", order.getPhone(),
@@ -270,18 +270,18 @@ public class OrderView {
             );
         }
 
-        if (choose == Select.SHOW || choose == Select.PRINT) {
+        if (choose == ESelect.SHOW || choose == ESelect.PRINT) {
             orderItemView.showAllItemOfOrder(choose);
         }
     }
 
-    public void showOrdersOfEmployee(long userId, Select choose) {
+    public void showOrdersOfEmployee(long userId, ESelect choose) {
         List<Order> orders = orderService.findIdUserByOrder(userId);
         if (orders.size() != 0) {
 //        id + "," + userId+ "," + phone + "," + address+ "," + grandTotal+ "," + name + "," + creatAt+ ","+ updateAt;
             System.out.println("DANH SÁCH ĐƠN HÀNG ");
 
-            System.out.printf("| %-5s%-9s | %-8s%-18s | %-6s%-10s | %-5s%-24s  | %-7s%-15s | %-11s%-24s | %-2s%-20s |\n",
+            System.out.printf("| %-2s%-7s | %-3s%-20s | %-3s%-13s | %-5s%-10s  | %-4s%-10s | %-2s%-15s | %-2s%-17s |\n",
                     "", "ID",
                     "", "KHÁCH HÀNG ",
                     "", "SĐT",
@@ -291,7 +291,8 @@ public class OrderView {
                     "", "THỜI GIAN TẠO"
             );
             for (Order order : orders) {
-                System.out.printf("| %-2s%-12s | %-3s%-23s | %-3s%-13s | %-5s%-24s  | %-4s%-18s | %-2s%-33s | %-2s%-20s |\n",
+                System.out.printf("| %-2s%-7s | %-3s%-20s | %-3s%-13s | %-5s%-10s  | %-4s%-10s | %-2s%-15s | %-2s%-17s |\n",
+
                         "", order.getId(),
                         "", order.getName(),
                         "", order.getPhone(),
@@ -327,7 +328,7 @@ public class OrderView {
         } while (flag);
     }
 
-    public void showOrder1(List<Order> orders, Select choose) {
+    public void showOrder1(List<Order> orders, ESelect choose) {
 //        id + "," + userId+ "," + phone + "," + address+ "," + grandTotal+ "," + name + "," + creatAt+ ","+ updateAt;
         System.out.println("DANH SÁCH ĐƠN HÀNG");
         System.out.printf("| %-5s%-9s | %-8s%-18s | %-6s%-10s | %-5s%-24s  | %-7s%-15s | %-11s%-24s | %-2s%-20s |\n",
@@ -352,7 +353,7 @@ public class OrderView {
             );
         }
 
-        if (choose == Select.SHOW) {
+        if (choose == ESelect.SHOW) {
             orderItemView.showAllItemOfOrder(choose);
         }
     }

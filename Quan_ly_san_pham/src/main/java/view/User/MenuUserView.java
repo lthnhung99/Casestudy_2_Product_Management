@@ -4,7 +4,7 @@ import view.AdminView;
 import view.Order.OrderView;
 import view.Order.SearchOrderView;
 import view.Product.ProductView;
-import view.Select;
+import view.ESelect;
 
 import java.util.Scanner;
 
@@ -84,7 +84,7 @@ public class MenuUserView {
                     break;
                 case 3:
                     OrderView orderView2 = new OrderView();
-                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , Select.SHOW);
+                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , ESelect.SHOW);
                     break;
                 case 4 :
                     SearchOrderView searchOrderView = new SearchOrderView();
@@ -93,7 +93,7 @@ public class MenuUserView {
                     login();
                     break;
                 default:
-                    System.out.println("Nhập chức năng sai! Vui lòng nhập lại !!!");
+                    System.err.println("Nhập chức năng sai! Vui lòng nhập lại !!!");
             }
         }while (true);
     }

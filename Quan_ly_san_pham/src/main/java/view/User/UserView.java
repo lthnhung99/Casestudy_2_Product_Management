@@ -7,7 +7,7 @@ import utils.AppUtils;
 import utils.InstantUtils;
 import utils.ValidateUtils;
 import view.MainLauncher;
-import view.Select;
+import view.ESelect;
 
 import java.util.List;
 import java.util.Scanner;
@@ -27,28 +27,28 @@ public class UserView {
                 long idUser = System.currentTimeMillis()%100000;
                 String username = inputUserName();
                 String password = inputPassword();
-                String fullName = inputFullName(Select.ADD);
-                String phone = inputPhone(Select.ADD);
-                String address = inputAddress(Select.ADD);
-                String email = inputEmail(Select.ADD);
+                String fullName = inputFullName(ESelect.ADD);
+                String phone = inputPhone(ESelect.ADD);
+                String address = inputAddress(ESelect.ADD);
+                String email = inputEmail(ESelect.ADD);
                 User user = new User(idUser, username, password, fullName, phone, email, address, ERole.USER);
                 user.setRole(ERole.USER);
                 userService.add(user);
                 System.out.println("Đã thêm người dùng thành công!");
-                showUsers(Select.SHOW);
+                showUsers(ESelect.SHOW);
 
             }catch (Exception e){
                 System.err.println("Nhập sai. Vui lòng nhập lại!!!");
             }
-        }while (AppUtils.isRetry(Select.ADD));
+        }while (AppUtils.isRetry(ESelect.ADD));
     }
 
     public void updateUser() {
         boolean isRetry = false;
         do {
             try {
-                showUsers(Select.UPDATE);
-                int id = inputId(Select.UPDATE);
+                showUsers(ESelect.UPDATE);
+                int id = inputId(ESelect.UPDATE);
                 System.out.println("╔═════════════════════════════════════════════════════╗");
                 System.out.println("║                SỬA THÔNG TIN NGƯỜI DÙNG             ║");
                 System.out.println("╠═════════════════════════════════════════════════════╣");
@@ -65,41 +65,41 @@ public class UserView {
                 newUser.setIdUser(id);
                 switch (option) {
                     case 1:
-                        String name = inputFullName(Select.UPDATE);
+                        String name = inputFullName(ESelect.UPDATE);
                         newUser.setFullName(name);
                         userService.update(newUser);
                         System.out.println("Đã đổi tên thành công!");
                         break;
                     case 2:
-                        String phone = inputPhone(Select.UPDATE);
+                        String phone = inputPhone(ESelect.UPDATE);
                         newUser.setPhone(phone);
                         userService.update(newUser);
                         System.out.println("Đổi số điện thoại thành công!");
                         break;
                     case 3:
-                        String address = inputAddress(Select.UPDATE);
+                        String address = inputAddress(ESelect.UPDATE);
                         newUser.setAddress(address);
                         userService.update(newUser);
                         System.out.println("Đổi địa chỉ thành công!");
                         break;
                     case 4:
-                        String email = inputEmail(Select.UPDATE);
+                        String email = inputEmail(ESelect.UPDATE);
                         newUser.setEmail(email);
                         userService.update(newUser);
                         System.out.println("Đổi email thành công!");
                         break;
                 }
-                isRetry = option != 5 && AppUtils.isRetry(Select.UPDATE);
+                isRetry = option != 5 && AppUtils.isRetry(ESelect.UPDATE);
             } catch (Exception e) {
-                System.out.println("Nhập sai !!! ");
+                System.err.println("Nhập sai !!! ");
             }
         } while (isRetry);
     }
 
     public void removeUser() {
-        showUsers(Select.REMOVE);
+        showUsers(ESelect.REMOVE);
         int id;
-        while (!userService.existsById(id = inputId(Select.REMOVE))) {
+        while (!userService.existsById(id = inputId(ESelect.REMOVE))) {
             System.out.println("Không tồn tại người dùng !");
             System.out.println("Nhấn 'y' để tìm lại người dùng || Nhấn 'b' để quay lại || Nhấn 't' để thoát chương trình ");
             String option = sc.nextLine().toLowerCase();
@@ -130,13 +130,13 @@ public class UserView {
         if (option == 1) {
             userService.removeById(id);
             System.out.println("Đã xóa user thành công!");
-            showUsers(Select.REMOVE);
-            AppUtils.isRetry(Select.REMOVE);
+            showUsers(ESelect.REMOVE);
+            AppUtils.isRetry(ESelect.REMOVE);
         } else if (option == 2) {
             MainLauncher.launch();
         }
     }
-    private int inputId(Select choose) {
+    private int inputId(ESelect choose) {
         int id;
         switch (choose) {
             case ADD:
@@ -169,7 +169,7 @@ public class UserView {
         } while (isRetry);
         return id;
     }
-    public String inputEmail(Select choose) {
+    public String inputEmail(ESelect choose) {
         switch (choose) {
             case ADD:
                 System.out.println("Nhập email");
@@ -195,7 +195,7 @@ public class UserView {
         return email;
     }
 
-    public String inputAddress(Select choose) {
+    public String inputAddress(ESelect choose) {
         switch (choose) {
             case ADD:
                 String address;
@@ -225,7 +225,7 @@ public class UserView {
     }
 
 
-    public String inputPhone(Select choose) {
+    public String inputPhone(ESelect choose) {
         switch (choose) {
             case ADD:
                 System.out.println("Nhập số điện thoại (10 số, bắt đầu số 0)");
@@ -251,7 +251,7 @@ public class UserView {
         return phone;
     }
 
-    public String inputFullName(Select choose) {
+    public String inputFullName(ESelect choose) {
         switch (choose) {
             case ADD:
                 System.out.println("Nhập họ và tên");
@@ -296,7 +296,7 @@ public class UserView {
     }
 
 
-    public void showUsers(Select choose) {
+    public void showUsers(ESelect choose) {
         System.out.println("DANH SÁCH NGƯỜI DÙNG");
         System.out.printf("%-15s %-22s %-15s %-22s %-18s %-15s %-20s %-20s\n", "Id", "Tên", "Số điện thoại", "Email", "Địa chỉ", "Người dùng", "Ngày tạo", "Ngày cập nhật");
         List<User> users = userService.findAll();
@@ -312,8 +312,8 @@ public class UserView {
                     user.getUpdateAt() == null ? "" : InstantUtils.instantToString(user.getUpdateAt())
             );
         }
-        if (choose == Select.SHOW)
-            AppUtils.isRetry(Select.SHOW);
+        if (choose == ESelect.SHOW)
+            AppUtils.isRetry(ESelect.SHOW);
     }
 
 
