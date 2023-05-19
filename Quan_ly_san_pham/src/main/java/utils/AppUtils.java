@@ -27,12 +27,12 @@ public class AppUtils {
             try {
                 option = Integer.parseInt(sc.nextLine());
                 if (option > max || option < min) {
-                    System.out.println("Chọn chức năng không đúng! Vui lòng nhập lại.!");
+                    System.err.println("Chọn chức năng không đúng! Vui lòng nhập lại.!");
                     continue;
                 }
                 break;
             } catch (Exception ex) {
-                System.out.println("Nhập sai! Vui lòng nhập lại!!! ");
+                System.err.println("Nhập sai! Vui lòng nhập lại!!! ");
             }
         } while (true);
         return option;
@@ -45,7 +45,7 @@ public class AppUtils {
                 result = Double.parseDouble(sc.nextLine());
                 return result;
             } catch (Exception ex) {
-                System.out.println("Nhập sai! Vui lòng nhập lại!!!");
+                System.err.println("Nhập sai! Vui lòng nhập lại!!!");
             }
         } while (true);
     }
@@ -88,7 +88,7 @@ public class AppUtils {
                     exit();
                     break;
                 default:
-                    System.out.println("Chọn chức năng không đúng! Vui lòng nhập lại.");
+                    System.err.println("Chọn chức năng không đúng! Vui lòng nhập lại.");
             }
         } while (true);
     }

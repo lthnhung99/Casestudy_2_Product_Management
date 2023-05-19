@@ -47,16 +47,16 @@ public class MainLauncher {
     }
 
     public static void mainMenu() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                     MENU QUẢN LÝ                    ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Quản lý người dùng                              ║");
-        System.out.println("║ ▶ 2.Quản lý sản phẩm                                ║");
-        System.out.println("║ ▶ 3.Quản lý đơn đặt hàng                            ║");
-        System.out.println("║ ▶ 4.Đăng xuất                                       ║");
-        System.out.println("║ ▶ Chon chức năng                                    ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                     MENU QUẢN LÝ                    ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Quản lý người dùng                              ║");
+        System.out.println("                                            ║ ▶ 2.Quản lý sản phẩm                                ║");
+        System.out.println("                                            ║ ▶ 3.Quản lý đơn đặt hàng                            ║");
+        System.out.println("                                            ║ ▶ 4.Đăng xuất                                       ║");
+        System.out.println("                                            ║ ▶ Chon chức năng                                    ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
 
     }

@@ -81,7 +81,6 @@ public class ProductView {
                 boolean flag = true;
                 do {
                     System.out.print("Nhấn 'c' để tiếp tục cập nhật || Nhấn 'b' để quay lại || Nhấn 'e' để thoát \n");
-                    System.out.print("➠");
                     String choice = sc.nextLine();
                     switch (choice) {
                         case "c":
@@ -95,7 +94,7 @@ public class ProductView {
                             System.exit(0);
                             break;
                         default:
-                            System.out.println("Nhập sai! Vui lòng nhập lại !");
+                            System.err.println("Nhập sai! Vui lòng nhập lại !");
                             break;
                     }
                 } while (!flag);

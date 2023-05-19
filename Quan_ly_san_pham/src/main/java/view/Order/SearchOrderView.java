@@ -154,18 +154,18 @@ public class SearchOrderView {
     }
 
     private static void menuFindOrder() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                       TÌM KIẾM                      ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Tìm kiếm theo ID                                ║");
-        System.out.println("║ ▶ 2.Tìm kiếm theo khách hàng                        ║");
-        System.out.println("║ ▶ 3.Tìm kiếm theo số điện thoại                     ║");
-        System.out.println("║ ▶ 4.Tìm kiếm theo địa chỉ                           ║");
-        System.out.println("║ ▶ 5.Tìm kiếm theo nhân viên                         ║");
-        System.out.println("║ ▶ 6.Quay lại                                        ║");
-        System.out.println("║ ▶ 0.Thoát                                           ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                       TÌM KIẾM                      ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Tìm kiếm theo ID                                ║");
+        System.out.println("                                            ║ ▶ 2.Tìm kiếm theo khách hàng                        ║");
+        System.out.println("                                            ║ ▶ 3.Tìm kiếm theo số điện thoại                     ║");
+        System.out.println("                                            ║ ▶ 4.Tìm kiếm theo địa chỉ                           ║");
+        System.out.println("                                            ║ ▶ 5.Tìm kiếm theo nhân viên                         ║");
+        System.out.println("                                            ║ ▶ 6.Quay lại                                        ║");
+        System.out.println("                                            ║ ▶ 0.Thoát                                           ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
 
 

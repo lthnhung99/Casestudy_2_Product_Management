@@ -19,12 +19,14 @@ public class SortProductView {
     }
 
     public static void sortMenu() {
-
-        System.out.println("1. Sắp xếp theo tên sản phẩm");
-        System.out.println("2. Sắp xếp theo giá sản phẩm");
-        System.out.println("3. Sắp xếp theo số lượng sản phẩm");
-        System.out.println("0. Quay lại");
-        System.out.println("Chọn chức năng sắp xếp: ");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Sắp xếp theo tên sản phẩm                       ║");
+        System.out.println("                                            ║ ▶ 2.Sắp xếp theo giá sản phẩm                       ║");
+        System.out.println("                                            ║ ▶ 3.Sắp xếp theo số lượng sản phẩm                  ║");
+        System.out.println("                                            ║ ▶ 0.Quay lại                                        ║");
+        System.out.println("                                            ║ ▶ Chọn chức năng                                    ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
     }
     public static void choice() {
         boolean is = true;

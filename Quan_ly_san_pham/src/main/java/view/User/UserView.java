@@ -49,16 +49,16 @@ public class UserView {
             try {
                 showUsers(ESelect.UPDATE);
                 int id = inputId(ESelect.UPDATE);
-                System.out.println("╔═════════════════════════════════════════════════════╗");
-                System.out.println("║                SỬA THÔNG TIN NGƯỜI DÙNG             ║");
-                System.out.println("╠═════════════════════════════════════════════════════╣");
-                System.out.println("║ Options:                                            ║");
-                System.out.println("║ ▶ 1.Sửa tên                                         ║");
-                System.out.println("║ ▶ 2.Sửa số điện thoại                               ║");
-                System.out.println("║ ▶ 3.Sửa địa chỉ                                     ║");
-                System.out.println("║ ▶ 4.Sửa email                                       ║");
-                System.out.println("║ ▶ 5.Quay lại                                        ║");
-                System.out.println("╚═════════════════════════════════════════════════════╝");
+                System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+                System.out.println("                                            ║                SỬA THÔNG TIN NGƯỜI DÙNG             ║");
+                System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+                System.out.println("                                            ║ Options:                                            ║");
+                System.out.println("                                            ║ ▶ 1.Sửa tên                                         ║");
+                System.out.println("                                            ║ ▶ 2.Sửa số điện thoại                               ║");
+                System.out.println("                                            ║ ▶ 3.Sửa địa chỉ                                     ║");
+                System.out.println("                                            ║ ▶ 4.Sửa email                                       ║");
+                System.out.println("                                            ║ ▶ 5.Quay lại                                        ║");
+                System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
                 int option = AppUtils.retryChoose(1, 5);
                 User newUser = new User();
@@ -118,13 +118,13 @@ public class UserView {
                     break;
             }
         }
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                  XÁC NHẬN ĐỂ XÓA                    ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Xóa                                             ║");
-        System.out.println("║ ▶ 2.Quay lại                                        ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                  XÁC NHẬN ĐỂ XÓA                    ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Xóa                                             ║");
+        System.out.println("                                            ║ ▶ 2.Quay lại                                        ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
         int option = AppUtils.retryChoose(1, 2);
         if (option == 1) {

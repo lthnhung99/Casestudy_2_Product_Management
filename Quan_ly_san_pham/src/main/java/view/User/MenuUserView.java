@@ -16,42 +16,42 @@ public class MenuUserView {
     static ProductView productView = new ProductView();
 
     public static void menuOderUser() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                       MAIN MENU                     ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Tạo đơn hàng                                    ║");
-        System.out.println("║ ▶ 2.Chỉnh sửa đơn hàng                              ║");
-        System.out.println("║ ▶ 3.Xem đơn hàng                                    ║");
-        System.out.println("║ ▶ 4.Tìm kiếm đơn hàng                               ║");
-        System.out.println("║ ▶ 0.Đăng xuất                                       ║");
-        System.out.println("║ ▶ Chọn chức năng                                    ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                       MAIN MENU                     ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Tạo đơn hàng                                    ║");
+        System.out.println("                                            ║ ▶ 2.Chỉnh sửa đơn hàng                              ║");
+        System.out.println("                                            ║ ▶ 3.Xem đơn hàng                                    ║");
+        System.out.println("                                            ║ ▶ 4.Tìm kiếm đơn hàng                               ║");
+        System.out.println("                                            ║ ▶ 0.Đăng xuất                                       ║");
+        System.out.println("                                            ║ ▶ Chọn chức năng                                    ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
     }
     public static void menuUser() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                  QUẢN LÝ NHÂN VIÊN                  ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Thêm nhân viên                                  ║");
-        System.out.println("║ ▶ 2.Sửa thông tin nhân viên                         ║");
-        System.out.println("║ ▶ 3.Xóa nhân viên                                   ║");
-        System.out.println("║ ▶ 4.Hiện thông tin nhân viên                        ║");
-        System.out.println("║ ▶ 5.Quay lại MAIN MENU                              ║");
-        System.out.println("║ ▶ 6.Thoát                                           ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                  QUẢN LÝ NHÂN VIÊN                  ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Thêm nhân viên                                  ║");
+        System.out.println("                                            ║ ▶ 2.Sửa thông tin nhân viên                         ║");
+        System.out.println("                                            ║ ▶ 3.Xóa nhân viên                                   ║");
+        System.out.println("                                            ║ ▶ 4.Hiện thông tin nhân viên                        ║");
+        System.out.println("                                            ║ ▶ 5.Quay lại MAIN MENU                              ║");
+        System.out.println("                                            ║ ▶ 6.Thoát                                           ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
     }
     public static void login() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                  CỬA HÀNG MỸ PHẨM                   ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Đăng nhập                                       ║");
-        System.out.println("║ ▶ 0.Thoát                                           ║");
-        System.out.println("║ ▶ Chọn chức năng                                    ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                  CỬA HÀNG MỸ PHẨM                   ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Đăng nhập                                       ║");
+        System.out.println("                                            ║ ▶ 0.Thoát                                           ║");
+        System.out.println("                                            ║ ▶ Chọn chức năng                                    ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
         try {
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {

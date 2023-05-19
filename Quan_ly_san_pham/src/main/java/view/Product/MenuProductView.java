@@ -10,33 +10,33 @@ public class MenuProductView {
     public static Scanner sc = new Scanner(System.in);
 
     public static void inputUpdate() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                         CẬP NHẬT                    ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Cập nhật tên                                    ║");
-        System.out.println("║ ▶ 2.Cập nhật giá                                    ║");
-        System.out.println("║ ▶ 3.Cập nhật số lượng                               ║");
-        System.out.println("║ ▶ 0.Quay lại                                        ║");
-        System.out.println("║ ▶ Chọn chức năng                                    ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                ║                         CẬP NHẬT                    ║");
+        System.out.println("                                ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                ║ Options:                                            ║");
+        System.out.println("                                ║ ▶ 1.Cập nhật tên                                    ║");
+        System.out.println("                                ║ ▶ 2.Cập nhật giá                                    ║");
+        System.out.println("                                ║ ▶ 3.Cập nhật số lượng                               ║");
+        System.out.println("                                ║ ▶ 0.Quay lại                                        ║");
+        System.out.println("                                ║ ▶ Chọn chức năng                                    ║");
+        System.out.println("                                ╚═════════════════════════════════════════════════════╝");
 
     }
     public static void menuProduct() {
-        System.out.println("╔═════════════════════════════════════════════════════╗");
-        System.out.println("║                   QUẢN LÝ SẢN PHẨM                  ║");
-        System.out.println("╠═════════════════════════════════════════════════════╣");
-        System.out.println("║ Options:                                            ║");
-        System.out.println("║ ▶ 1.Thêm sản phẩm                                   ║");
-        System.out.println("║ ▶ 2.Sửa thông tin sản phẩm                          ║");
-        System.out.println("║ ▶ 3.Tìm sản phẩm                                    ║");
-        System.out.println("║ ▶ 4.Hiển thị danh sách sản phẩm                     ║");
-        System.out.println("║ ▶ 5.Sắp xếp sản phẩm                                ║");
-        System.out.println("║ ▶ 6.Xóa sản phẩm                                    ║");
-        System.out.println("║ ▶ 7.Quay lại menu                                   ║");
-        System.out.println("║ ▶ 8.Thoát                                           ║");
-        System.out.println("║ ▶ Chọn chức năng                                    ║");
-        System.out.println("╚═════════════════════════════════════════════════════╝");
+        System.out.println("                                            ╔═════════════════════════════════════════════════════╗");
+        System.out.println("                                            ║                   QUẢN LÝ SẢN PHẨM                  ║");
+        System.out.println("                                            ╠═════════════════════════════════════════════════════╣");
+        System.out.println("                                            ║ Options:                                            ║");
+        System.out.println("                                            ║ ▶ 1.Thêm sản phẩm                                   ║");
+        System.out.println("                                            ║ ▶ 2.Sửa thông tin sản phẩm                          ║");
+        System.out.println("                                            ║ ▶ 3.Tìm sản phẩm                                    ║");
+        System.out.println("                                            ║ ▶ 4.Hiển thị danh sách sản phẩm                     ║");
+        System.out.println("                                            ║ ▶ 5.Sắp xếp sản phẩm                                ║");
+        System.out.println("                                            ║ ▶ 6.Xóa sản phẩm                                    ║");
+        System.out.println("                                            ║ ▶ 7.Quay lại menu                                   ║");
+        System.out.println("                                            ║ ▶ 8.Thoát                                           ║");
+        System.out.println("                                            ║ ▶ Chọn chức năng                                    ║");
+        System.out.println("                                            ╚═════════════════════════════════════════════════════╝");
 
     }
 
