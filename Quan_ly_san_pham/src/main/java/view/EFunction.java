@@ -1,5 +1,5 @@
 package view;
 
-public enum ESelect {
+public enum EFunction {
     ADD , REMOVE , UPDATE , SHOW , SEARCH , PRINT
 }

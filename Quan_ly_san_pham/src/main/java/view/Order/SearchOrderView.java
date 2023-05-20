@@ -5,7 +5,7 @@ import model.ERole;
 import model.User;
 import service.OrderService;
 import service.UserService;
-import view.ESelect;
+import view.EFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class SearchOrderView {
                     case 6:
                         OrderViewLauncher.runOrder();
                         break;
-                    case 7:
+                    case 0:
                         isTrue = false;
                         break;
                     default:
@@ -62,13 +62,13 @@ public class SearchOrderView {
     }
 
     private void findByUserId() {
-        orderView.showOrder1(orderService.findAllPrintedOrder(), ESelect.SEARCH);
+        orderView.showOrder1(orderService.findAllPrintedOrder(), EFunction.SEARCH);
         System.out.println("TÌM KIẾM THEO NHÂN VIÊN");
         System.out.print("Nhập id nhân viên: ");
         long value = Long.parseLong(scanner.nextLine());
         List<Order> ordersFind = orderService.findUserById(value);
         if (ordersFind != null) {
-            orderView.showOrder1(ordersFind, ESelect.SEARCH);
+            orderView.showOrder1(ordersFind, EFunction.SEARCH);
         } else {
             System.out.println("Không tìm thấy!");
         }
@@ -77,11 +77,12 @@ public class SearchOrderView {
 
     public void findByOrderId(long userId) {
         User user = userService.findById(userId);
+
         if (user.getRole() == ERole.ADMIN) {
-            orderView.showOrder1(orderService.findAllPrintedOrder(), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findAllPrintedOrder(), EFunction.SEARCH);
         }
         if (user.getRole() == ERole.USER) {
-            orderView.showOrder1(orderService.findUserById(userId), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findUserById(userId), EFunction.SEARCH);
         }
         System.out.println(" TÌM KIẾM THEO ID");
         System.out.print("Nhập id hóa đơn cần tìm: ");
@@ -90,7 +91,7 @@ public class SearchOrderView {
         if (order != null) {
             List<Order> ordersFind = new ArrayList<>();
             ordersFind.add(order);
-            orderView.showOrder1(ordersFind, ESelect.SEARCH);
+            orderView.showOrder1(ordersFind, EFunction.SEARCH);
         } else {
             System.out.println("Không tìm thấy!");
         }
@@ -98,18 +99,20 @@ public class SearchOrderView {
 
     private void findByFullName(long userId) {
         User user = userService.findById(userId);
+
+
         if (user.getRole() == ERole.ADMIN) {
-            orderView.showOrder1(orderService.findAllPrintedOrder(), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findAllPrintedOrder(), EFunction.SEARCH);
         }
         if (user.getRole() == ERole.USER) {
-            orderView.showOrder1(orderService.findUserById(userId), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findUserById(userId), EFunction.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO KHÁCH HÀNG");
         System.out.print("Nhập tên khách hàng: ");
         String name = scanner.nextLine();
         List<Order> ordersFind = orderService.findByFullName(name);
         if (ordersFind != null) {
-            orderView.showOrder1(ordersFind, ESelect.SEARCH);
+            orderView.showOrder1(ordersFind, EFunction.SEARCH);
         } else {
             System.out.println("Không tìm thấy!");
         }
@@ -117,18 +120,20 @@ public class SearchOrderView {
 
     private void findByPhone(long userId) {
         User user = userService.findById(userId);
+
+
         if (user.getRole() == ERole.ADMIN) {
-            orderView.showOrder1(orderService.findAllPrintedOrder(), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findAllPrintedOrder(), EFunction.SEARCH);
         }
         if (user.getRole() == ERole.USER) {
-            orderView.showOrder1(orderService.findUserById(userId), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findUserById(userId), EFunction.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO SỐ ĐIỆN THOẠI");
         System.out.print("Nhập số điện thoại cần tìm: ");
         String value = scanner.nextLine();
         List<Order> ordersFind = orderService.findByPhone(value, userId);
         if (ordersFind != null) {
-            orderView.showOrder1(ordersFind, ESelect.SEARCH);
+            orderView.showOrder1(ordersFind, EFunction.SEARCH);
         } else {
             System.out.println("Không tìm thấy");
         }
@@ -136,18 +141,19 @@ public class SearchOrderView {
 
     private void findByAddress(long userId) {
         User user = userService.findById(userId);
+
         if (user.getRole() == ERole.ADMIN) {
-            orderView.showOrder1(orderService.findAllPrintedOrder(), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findAllPrintedOrder(), EFunction.SEARCH);
         }
         if (user.getRole() == ERole.USER) {
-            orderView.showOrder1(orderService.findUserById(userId), ESelect.SEARCH);
+            orderView.showOrder1(orderService.findUserById(userId), EFunction.SEARCH);
         }
         System.out.println("TÌM KIẾM THEO ĐỊA CHỈ");
         System.out.print("Nhập địa chỉ cần tìm: ");
         String value = scanner.nextLine();
         List<Order> ordersFind = orderService.findByAddress(value, userId);
         if (ordersFind != null) {
-            orderView.showOrder1(ordersFind, ESelect.SEARCH);
+            orderView.showOrder1(ordersFind, EFunction.SEARCH);
         } else {
             System.out.println("Không tìm thấy!");
         }

@@ -4,7 +4,7 @@ import view.AdminView;
 import view.Order.OrderView;
 import view.Order.SearchOrderView;
 import view.Product.ProductView;
-import view.ESelect;
+import view.EFunction;
 
 import java.util.Scanner;
 
@@ -84,7 +84,7 @@ public class MenuUserView {
                     break;
                 case 3:
                     OrderView orderView2 = new OrderView();
-                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , ESelect.SHOW);
+                    orderView2.showOrdersOfEmployee(AdminView.idOnlineUser , EFunction.SHOW);
                     break;
                 case 4 :
                     SearchOrderView searchOrderView = new SearchOrderView();

@@ -50,10 +50,10 @@ public class SearchProductView {
         }while (flag);
     }
 
-    public static void searchByName() {
+    /**public static void searchByName() {
         List<Product> products = productService.findAll();
         int count = 0;
-        System.out.println("Nhập tên cần tìm kiếm (Tên có dấu): ");
+        System.out.println("Nhập tên cần tìm kiếm ");
         try {
             String name = sc.nextLine();
             System.out.printf("%-15s %-20s %-18s %-10s\n", "Id", "Tên sản phẩm", "Giá", "Số lượng");
@@ -63,13 +63,36 @@ public class SearchProductView {
                     System.out.printf("%-20s %-20s %-18s %-10s %-18s\n", product.getIdProduct(), product.getNameProduct(), decimalFormat.format(product.getPrice()),
                             product.getQuantity());
                 }
+
             }
             showReturnSearch(count);
 
         } catch (Exception e) {
             System.out.println();
         }
-    }
+    }*/
+      public static void searchByName() {
+     List<Product> products = productService.findAll();
+     int count = 0;
+     System.out.println("Nhập tên cần tìm kiếm ");
+     try {
+     String name = sc.nextLine();
+     System.out.printf("%-15s %-20s %-18s %-10s\n", "Id", "Tên Sản Phẩm", "Giá", "Số lượng \n");
+     for (Product product : products) {
+     if (ValidateUtils.removeAccent(product.getNameProduct().toLowerCase()).contains(ValidateUtils.removeAccent(name.toLowerCase()))) {
+     //food.getNameFood().toUpperCase().contains(nameFood.toUpperCase())
+         count++;
+     System.out.printf("%-20s %-20s %-18s %-10s\n", product.getIdProduct(), product.getNameProduct(), decimalFormat.format(product.getPrice()),
+     product.getQuantity());
+     }
+     }
+     showReturnSearch(count);
+
+     } catch (Exception e) {
+     System.out.println("Chưa hợp lệ!Mời nhập lại");
+     }
+     }
+
 
 
     public static void showReturnSearch(int count) {

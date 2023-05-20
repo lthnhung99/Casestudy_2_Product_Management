@@ -7,7 +7,7 @@ import service.*;
 import utils.AppUtils;
 import utils.InstantUtils;
 import view.Product.ProductView;
-import view.ESelect;
+import view.EFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class OrderItemView {
                 switch (choices){
                     case "y":
                         checkOrderItem = true;
-                        productView.showProduct(ESelect.SHOW);
+                        productView.showProduct(EFunction.SHOW);
                         break;
                     case "n":
                         checkOrderItem = false;
@@ -98,7 +98,7 @@ public class OrderItemView {
     }
     public void removeOrderItem() {
 
-        long id = inputIdOrderItem(ESelect.REMOVE);
+        long id = inputIdOrderItem(EFunction.REMOVE);
         int option;
         boolean isTrue = true;
         do {
@@ -136,7 +136,7 @@ public class OrderItemView {
         boolean isTrue = true;
         do {
             try {
-                long id = inputIdOrderItem(ESelect.UPDATE);
+                long id = inputIdOrderItem(EFunction.UPDATE);
                 OrderItem orderItem = orderItemService.findById(id);
                 MenuOrderItem.menuUpdateOrderItem();
                 option = Integer.parseInt(scanner.nextLine());
@@ -167,8 +167,8 @@ public class OrderItemView {
         boolean flag = true;
         do {
             try {
-                productView.showProduct1(productService.findAll(), ESelect.SHOW);
-                long productId = inputProductId(ESelect.UPDATE);
+                productView.showProduct1(productService.findAll(), EFunction.SHOW);
+                long productId = inputProductId(EFunction.UPDATE);
                 orderItem.setProductId(productId);
                 Product product = productService.findProductById(productId);
                 orderItem.setPrice(product.getPrice());
@@ -190,7 +190,7 @@ public class OrderItemView {
         do {
             try {
                 int oldQuantity = orderItem.getQuantity();
-                int newQuantity = inputQuantity(ESelect.UPDATE, orderItem.getProductId());
+                int newQuantity = inputQuantity(EFunction.UPDATE, orderItem.getProductId());
                 setProductQuantity(orderItem.getProductId(), newQuantity - oldQuantity);
                 orderItem.setQuantity(newQuantity);
                 orderItem.setTotal(orderItem.getPrice()*newQuantity);
@@ -222,7 +222,7 @@ public class OrderItemView {
         orderService.update(order);
     }
 
-    private long inputProductId(ESelect choose) {
+    private long inputProductId(EFunction choose) {
         switch (choose) {
             case ADD -> System.out.println("Nhập ID sản phẩm: ");
 
@@ -246,7 +246,7 @@ public class OrderItemView {
         } while (flag);
         return id;
     }
-    private int inputQuantity(ESelect choose, long productId) {
+    private int inputQuantity(EFunction choose, long productId) {
         Product product = productService.findProductById(productId);
         switch (choose) {
             case ADD -> System.out.println("Nhập số lượng sản phẩm: ");
@@ -311,7 +311,7 @@ public class OrderItemView {
 
     }
 
-    public void showOrderItem1(List<OrderItem> orderItems, ESelect choose) {
+    public void showOrderItem1(List<OrderItem> orderItems, EFunction choose) {
         System.out.println("GIỎ HÀNG");
         System.out.printf("| %-5s%-9s | %-11s%-19s | %-7s%-11s | %-2s%-10s | %-5s%-17s |\n",
                 "", "ID",
@@ -329,24 +329,24 @@ public class OrderItemView {
                     "", AppUtils.doubleToVND(orderItem.getTotal())
             );
         }
-        if (choose != ESelect.UPDATE && choose != ESelect.REMOVE && choose != ESelect.SEARCH);
+        if (choose != EFunction.UPDATE && choose != EFunction.REMOVE && choose != EFunction.SEARCH);
     }
 
 
-    public void showAllItemOfOrder(ESelect selectFunction) {
+    public void showAllItemOfOrder(EFunction selectFunction) {
         boolean flag = true;
         long orderId;
         do {
-            if (selectFunction == ESelect.SHOW){
+            if (selectFunction == EFunction.SHOW){
                 System.out.println("Chọn 'y' để xem chi tiết đơn hàng \t|\t 'q' để trở lại.");
             }
             String choose = scanner.nextLine();
             switch (choose) {
                 case "y":
                     System.out.println("XEM CHI TIẾT ĐƠN HÀNG");
-                    orderId = inputIdOrder(ESelect.SHOW);
+                    orderId = inputIdOrder(EFunction.SHOW);
                     System.out.println("ID Order:" + orderId);
-                    showOrderItem1(orderItemService.findByOrderId(orderId), ESelect.PRINT);
+                    showOrderItem1(orderItemService.findByOrderId(orderId), EFunction.PRINT);
                     isRetryAddOrderItem(orderId);
                 case "q":
                     flag = false;
@@ -363,7 +363,7 @@ public class OrderItemView {
             String option = scanner.nextLine();
             switch (option) {
                 case "t":
-                    productView.showProduct1(productService.findAll(), ESelect.SHOW);
+                    productView.showProduct1(productService.findAll(), EFunction.SHOW);
                     addOrderItem(orderId);
                     setGrandTotal(orderId);
                     checkContinueOrderItem(orderId);
@@ -413,7 +413,7 @@ public class OrderItemView {
         orderItemService.removeById(orderId);
     }
 
-    private long inputIdOrder(ESelect choose) {
+    private long inputIdOrder(EFunction choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID : ");
@@ -436,7 +436,7 @@ public class OrderItemView {
         } while (!flag);
         return id;
     }
-    private long inputIdOrderItem(ESelect choose) {
+    private long inputIdOrderItem(EFunction choose) {
         long id;
         switch (choose) {
             case SHOW -> System.out.println("Nhập ID : ");

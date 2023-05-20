@@ -2,7 +2,7 @@ package view.Order;
 
 import view.AdminView;
 import view.MainLauncher;
-import view.ESelect;
+import view.EFunction;
 import view.User.MenuUserView;
 
 import java.util.Scanner;
@@ -26,7 +26,7 @@ public class OrderViewLauncher {
                         orderView.updateOrder(AdminView.idOnlineUser);
                         break;
                     case 3:
-                        orderView.showOrder(ESelect.SHOW);
+                        orderView.showOrder(EFunction.SHOW);
                         break;
                     case 4:
                         SearchOrderView searchOrderView = new SearchOrderView();

@@ -2,7 +2,7 @@ package view.User;
 
 import view.AdminView;
 import view.MainLauncher;
-import view.ESelect;
+import view.EFunction;
 
 import java.util.Scanner;
 
@@ -35,7 +35,7 @@ public class UserViewLauncher {
                         userView.removeUser();
                         break;
                     case 4:
-                        userView.showUsers(ESelect.SHOW);
+                        userView.showUsers(EFunction.SHOW);
                         break;
                     case 5:
                         MainLauncher.menuOption();
